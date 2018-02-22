@@ -21,6 +21,7 @@ public class Restaurant extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnOrder = new javax.swing.JButton();
         btnTable = new javax.swing.JButton();
         btnProduct = new javax.swing.JButton();
         btnProfile = new javax.swing.JButton();
@@ -30,10 +31,15 @@ public class Restaurant extends javax.swing.JFrame {
         btnHelp = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         mnFile = new javax.swing.JMenu();
+        mniNeworder = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        mniOpen = new javax.swing.JMenuItem();
+        mniSave = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        mniClose = new javax.swing.JMenuItem();
         mnTable = new javax.swing.JMenu();
         mnProfile = new javax.swing.JMenu();
         mnProduct = new javax.swing.JMenu();
-        mnPartner = new javax.swing.JMenu();
         mnBill = new javax.swing.JMenu();
         mnReport = new javax.swing.JMenu();
         mnOption = new javax.swing.JMenu();
@@ -41,6 +47,12 @@ public class Restaurant extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("FBNT Restaurant");
+        setPreferredSize(new java.awt.Dimension(800, 625));
+
+        btnOrder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/restaurant/notes32.png"))); // NOI18N
+        btnOrder.setText("Rendelés");
+        btnOrder.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnOrder.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         btnTable.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         btnTable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/restaurant/dining_table.png"))); // NOI18N
@@ -97,6 +109,21 @@ public class Restaurant extends javax.swing.JFrame {
 
         mnFile.setMnemonic('F');
         mnFile.setText("Fájl");
+
+        mniNeworder.setText("Új rendelés");
+        mnFile.add(mniNeworder);
+        mnFile.add(jSeparator1);
+
+        mniOpen.setText("Megnyitás");
+        mnFile.add(mniOpen);
+
+        mniSave.setText("Mentés");
+        mnFile.add(mniSave);
+        mnFile.add(jSeparator2);
+
+        mniClose.setText("Bezárás");
+        mnFile.add(mniClose);
+
         jMenuBar1.add(mnFile);
 
         mnTable.setMnemonic('A');
@@ -110,10 +137,6 @@ public class Restaurant extends javax.swing.JFrame {
         mnProduct.setMnemonic('T');
         mnProduct.setText("Termékek");
         jMenuBar1.add(mnProduct);
-
-        mnPartner.setMnemonic('P');
-        mnPartner.setText("Partnerek");
-        jMenuBar1.add(mnPartner);
 
         mnBill.setMnemonic('z');
         mnBill.setText("Számlázás");
@@ -138,42 +161,47 @@ public class Restaurant extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnTable)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnProduct)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnProfile)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnBill)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnReport)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnOption)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnHelp)
-                .addContainerGap(61, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(691, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnHelp, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnOption, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnReport, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnBill, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnProduct, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnProfile, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnOrder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnTable, javax.swing.GroupLayout.Alignment.TRAILING)))
+                .addContainerGap())
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnBill, btnHelp, btnOption, btnProduct, btnProfile, btnReport, btnTable});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnBill, btnHelp, btnOption, btnOrder, btnProduct, btnProfile, btnReport, btnTable});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnProduct, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnBill, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnOption, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnHelp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(503, Short.MAX_VALUE))
+                .addComponent(btnOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnTable, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnProduct, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnBill, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnOption, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnHelp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnBill, btnHelp, btnOption, btnProduct, btnProfile, btnReport, btnTable});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnBill, btnHelp, btnOption, btnOrder, btnProduct, btnProfile, btnReport, btnTable});
 
         pack();
         setLocationRelativeTo(null);
@@ -218,19 +246,25 @@ public class Restaurant extends javax.swing.JFrame {
     private javax.swing.JButton btnBill;
     private javax.swing.JButton btnHelp;
     private javax.swing.JButton btnOption;
+    private javax.swing.JButton btnOrder;
     private javax.swing.JButton btnProduct;
     private javax.swing.JButton btnProfile;
     private javax.swing.JButton btnReport;
     private javax.swing.JButton btnTable;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JMenu mnBill;
     private javax.swing.JMenu mnFile;
     private javax.swing.JMenu mnHelp;
     private javax.swing.JMenu mnOption;
-    private javax.swing.JMenu mnPartner;
     private javax.swing.JMenu mnProduct;
     private javax.swing.JMenu mnProfile;
     private javax.swing.JMenu mnReport;
     private javax.swing.JMenu mnTable;
+    private javax.swing.JMenuItem mniClose;
+    private javax.swing.JMenuItem mniNeworder;
+    private javax.swing.JMenuItem mniOpen;
+    private javax.swing.JMenuItem mniSave;
     // End of variables declaration//GEN-END:variables
 }
