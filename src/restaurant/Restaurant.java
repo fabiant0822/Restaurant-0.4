@@ -38,19 +38,36 @@ public class Restaurant extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         mniClose = new javax.swing.JMenuItem();
         mnTable = new javax.swing.JMenu();
+        mniOpened = new javax.swing.JMenuItem();
+        mniFree = new javax.swing.JMenuItem();
+        mniReserved = new javax.swing.JMenuItem();
         mnProfile = new javax.swing.JMenu();
+        mniNew = new javax.swing.JMenuItem();
+        mniEdit = new javax.swing.JMenuItem();
+        mniDelete = new javax.swing.JMenuItem();
         mnProduct = new javax.swing.JMenu();
+        mniDrink = new javax.swing.JMenuItem();
+        mniFood = new javax.swing.JMenuItem();
         mnBill = new javax.swing.JMenu();
+        mniBill = new javax.swing.JMenuItem();
+        mniStorno = new javax.swing.JMenuItem();
         mnReport = new javax.swing.JMenu();
+        mniDay = new javax.swing.JMenuItem();
+        mniDate = new javax.swing.JMenuItem();
         mnOption = new javax.swing.JMenu();
+        mniOption = new javax.swing.JMenuItem();
         mnHelp = new javax.swing.JMenu();
+        mniNamecard = new javax.swing.JMenuItem();
+        mniHelp = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("FBNT Restaurant");
         setPreferredSize(new java.awt.Dimension(800, 625));
+        setSize(new java.awt.Dimension(800, 625));
 
         btnOrder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/restaurant/notes32.png"))); // NOI18N
         btnOrder.setText("Rendelés");
+        btnOrder.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnOrder.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnOrder.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
@@ -58,9 +75,9 @@ public class Restaurant extends javax.swing.JFrame {
         btnTable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/restaurant/dining_table.png"))); // NOI18N
         btnTable.setText("Asztalok");
         btnTable.setAutoscrolls(true);
+        btnTable.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnTable.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnTable.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/restaurant/dining_table.png"))); // NOI18N
-        btnTable.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         btnTable.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         btnProduct.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -68,6 +85,7 @@ public class Restaurant extends javax.swing.JFrame {
         btnProduct.setText("Étlap/Itallap");
         btnProduct.setToolTipText("");
         btnProduct.setAutoscrolls(true);
+        btnProduct.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnProduct.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnProduct.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/restaurant/menu.png"))); // NOI18N
         btnProduct.setVerifyInputWhenFocusTarget(false);
@@ -77,12 +95,14 @@ public class Restaurant extends javax.swing.JFrame {
         btnProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/restaurant/employees.png"))); // NOI18N
         btnProfile.setText("Felhasználók");
         btnProfile.setToolTipText("");
+        btnProfile.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnProfile.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnProfile.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         btnBill.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         btnBill.setIcon(new javax.swing.ImageIcon(getClass().getResource("/restaurant/bill.png"))); // NOI18N
         btnBill.setText("Számla");
+        btnBill.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnBill.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnBill.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
@@ -90,22 +110,25 @@ public class Restaurant extends javax.swing.JFrame {
         btnReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/restaurant/report.png"))); // NOI18N
         btnReport.setText("Kimutatás");
         btnReport.setToolTipText("");
+        btnReport.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnReport.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnReport.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         btnOption.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         btnOption.setIcon(new javax.swing.ImageIcon(getClass().getResource("/restaurant/settings.png"))); // NOI18N
         btnOption.setText("Beállítások");
+        btnOption.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnOption.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnOption.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         btnHelp.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         btnHelp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/restaurant/help.png"))); // NOI18N
         btnHelp.setText("Súgó");
+        btnHelp.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnHelp.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnHelp.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        jMenuBar1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jMenuBar1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         mnFile.setMnemonic('F');
         mnFile.setText("Fájl");
@@ -128,31 +151,85 @@ public class Restaurant extends javax.swing.JFrame {
 
         mnTable.setMnemonic('A');
         mnTable.setText("Asztalok");
+
+        mniOpened.setText("Nyitott asztalok");
+        mnTable.add(mniOpened);
+
+        mniFree.setText("Szabad asztalok");
+        mnTable.add(mniFree);
+
+        mniReserved.setText("Foglalt asztalok");
+        mnTable.add(mniReserved);
+
         jMenuBar1.add(mnTable);
 
         mnProfile.setMnemonic('F');
         mnProfile.setText("Felhasználók");
+
+        mniNew.setLabel("Új felhasználó");
+        mnProfile.add(mniNew);
+
+        mniEdit.setLabel("Felhasználó beállítások");
+        mnProfile.add(mniEdit);
+
+        mniDelete.setLabel("Felhasználó törlése");
+        mnProfile.add(mniDelete);
+
         jMenuBar1.add(mnProfile);
 
         mnProduct.setMnemonic('T');
         mnProduct.setText("Termékek");
+
+        mniDrink.setText("Itallap");
+        mnProduct.add(mniDrink);
+
+        mniFood.setText("Étlap");
+        mnProduct.add(mniFood);
+
         jMenuBar1.add(mnProduct);
 
         mnBill.setMnemonic('z');
         mnBill.setText("Számlázás");
         mnBill.setToolTipText("");
+
+        mniBill.setText("Számla készítése");
+        mniBill.setActionCommand("");
+        mnBill.add(mniBill);
+
+        mniStorno.setText("Számla sztornó");
+        mniStorno.setActionCommand("");
+        mnBill.add(mniStorno);
+
         jMenuBar1.add(mnBill);
 
         mnReport.setMnemonic('K');
         mnReport.setText("Kimutatások");
+
+        mniDay.setText("Napi forgalom");
+        mnReport.add(mniDay);
+
+        mniDate.setText("Forgalom lekérdezés");
+        mnReport.add(mniDate);
+
         jMenuBar1.add(mnReport);
 
         mnOption.setMnemonic('B');
         mnOption.setText("Beállítások");
+
+        mniOption.setText("Hamarosan...");
+        mnOption.add(mniOption);
+
         jMenuBar1.add(mnOption);
 
         mnHelp.setMnemonic('S');
         mnHelp.setText("Súgó");
+
+        mniNamecard.setText("Névjegy");
+        mnHelp.add(mniNamecard);
+
+        mniHelp.setText("Súgó");
+        mnHelp.add(mniHelp);
+
         jMenuBar1.add(mnHelp);
 
         setJMenuBar(jMenuBar1);
@@ -262,9 +339,24 @@ public class Restaurant extends javax.swing.JFrame {
     private javax.swing.JMenu mnProfile;
     private javax.swing.JMenu mnReport;
     private javax.swing.JMenu mnTable;
+    private javax.swing.JMenuItem mniBill;
     private javax.swing.JMenuItem mniClose;
+    private javax.swing.JMenuItem mniDate;
+    private javax.swing.JMenuItem mniDay;
+    private javax.swing.JMenuItem mniDelete;
+    private javax.swing.JMenuItem mniDrink;
+    private javax.swing.JMenuItem mniEdit;
+    private javax.swing.JMenuItem mniFood;
+    private javax.swing.JMenuItem mniFree;
+    private javax.swing.JMenuItem mniHelp;
+    private javax.swing.JMenuItem mniNamecard;
+    private javax.swing.JMenuItem mniNew;
     private javax.swing.JMenuItem mniNeworder;
     private javax.swing.JMenuItem mniOpen;
+    private javax.swing.JMenuItem mniOpened;
+    private javax.swing.JMenuItem mniOption;
+    private javax.swing.JMenuItem mniReserved;
     private javax.swing.JMenuItem mniSave;
+    private javax.swing.JMenuItem mniStorno;
     // End of variables declaration//GEN-END:variables
 }
