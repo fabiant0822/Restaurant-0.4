@@ -48,9 +48,9 @@ public class DB {
      * @param tbl betölti ebbe a táblába a terméket
      * @param cb és betölti a comboboxba is
      */
-    public void termek_be(JTable tbl, JComboBox cb) {
+    public void asztal_be(JTable tbl, JComboBox cb) {
         final DefaultTableModel tm = (DefaultTableModel)tbl.getModel();
-        String s = "SELECT * FROM termek ORDER BY teremszam;";
+        String s = "SELECT * FROM asztalok ORDER BY asztal;";
 
         try (Connection kapcs = DriverManager.getConnection(dbUrl, user, pass);
                 PreparedStatement parancs = kapcs.prepareStatement(s);
@@ -59,12 +59,12 @@ public class DB {
             cb.removeAllItems();
             while (eredmeny.next()) {
                 Object sor[] = {
-                    eredmeny.getInt("teremid"),
-                    eredmeny.getString("teremszam"),
-                    eredmeny.getString("felhasznalas")
+                    eredmeny.getInt("asztal"),
+                    eredmeny.getInt("szek"),
+                    eredmeny.getString("helyseg")
                 };
                 tm.addRow(sor);
-                cb.addItem(eredmeny.getString("teremszam"));
+                cb.addItem(eredmeny.getString("asztal"));
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -249,18 +249,18 @@ public class DB {
     
     /**
      * Hozzáadja az adatbázishoz az ID-ket és az adatokat
-     * @param teremid
-     * @param eszkozid
-     * @param adatok
+     * @param asztal
+     * @param szek
+     * @param helyseg
      */
-    public void leltar_hozzaad(int teremid, int eszkozid, String adatok) {
-        String s = "INSERT INTO leltar (teremid,eszkozid,egyeb) VALUES(?,?,?);";
+    public void asztal_be(int asztal, int szek, String helyseg) {
+        String s = "INSERT INTO asztalok (asztal,szek,helyseg) VALUES(?,?,?);";
         try (Connection kapcs = DriverManager.getConnection(dbUrl, user, pass);
                 PreparedStatement parancs = kapcs.prepareStatement(s)) {
-            parancs.setInt(1, teremid);
-            parancs.setInt(2, eszkozid);
-            if (!adatok.isEmpty())
-                parancs.setString(3,levag(adatok.trim(), 30));
+            parancs.setInt(1, asztal);
+            parancs.setInt(2, szek);
+            if (!helyseg.isEmpty())
+                parancs.setString(3,levag(helyseg.trim(), 20));
             else
                 parancs.setNull(3,java.sql.Types.VARCHAR);
             parancs.executeUpdate();
