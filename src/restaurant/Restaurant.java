@@ -23,43 +23,29 @@ public class Restaurant extends javax.swing.JFrame {
 
         btnOrder = new javax.swing.JButton();
         btnTable = new javax.swing.JButton();
-        btnProduct = new javax.swing.JButton();
         btnProfile = new javax.swing.JButton();
+        btnProduct = new javax.swing.JButton();
         btnBill = new javax.swing.JButton();
         btnReport = new javax.swing.JButton();
         btnOption = new javax.swing.JButton();
         btnHelp = new javax.swing.JButton();
-        pnlOrder = new javax.swing.JPanel();
+        jtpBase = new javax.swing.JTabbedPane();
+        jtpOrder = new javax.swing.JPanel();
+        jtpTable = new javax.swing.JPanel();
+        jtpProfile = new javax.swing.JPanel();
+        jtpProduct = new javax.swing.JPanel();
+        jtpBill = new javax.swing.JPanel();
+        jtpReport = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        mnFile = new javax.swing.JMenu();
-        mniNeworder = new javax.swing.JMenuItem();
+        jmFile = new javax.swing.JMenu();
+        jmbOpen = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        mniOpen = new javax.swing.JMenuItem();
-        mniSave = new javax.swing.JMenuItem();
+        jmbSave = new javax.swing.JMenuItem();
+        jmbSaveas = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
-        mniClose = new javax.swing.JMenuItem();
-        mnTable = new javax.swing.JMenu();
-        mniOpened = new javax.swing.JMenuItem();
-        mniFree = new javax.swing.JMenuItem();
-        mniReserved = new javax.swing.JMenuItem();
-        mnProfile = new javax.swing.JMenu();
-        mniNew = new javax.swing.JMenuItem();
-        mniEdit = new javax.swing.JMenuItem();
-        mniDelete = new javax.swing.JMenuItem();
-        mnProduct = new javax.swing.JMenu();
-        mniDrink = new javax.swing.JMenuItem();
-        mniFood = new javax.swing.JMenuItem();
-        mnBill = new javax.swing.JMenu();
-        mniBill = new javax.swing.JMenuItem();
-        mniStorno = new javax.swing.JMenuItem();
-        mnReport = new javax.swing.JMenu();
-        mniDay = new javax.swing.JMenuItem();
-        mniDate = new javax.swing.JMenuItem();
-        mnOption = new javax.swing.JMenu();
-        mniOption = new javax.swing.JMenuItem();
-        mnHelp = new javax.swing.JMenu();
-        mniNamecard = new javax.swing.JMenuItem();
-        mniHelp = new javax.swing.JMenuItem();
+        jmbClose = new javax.swing.JMenuItem();
+        jmOption = new javax.swing.JMenu();
+        jmHelp = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("FBNT Restaurant");
@@ -81,6 +67,14 @@ public class Restaurant extends javax.swing.JFrame {
         btnTable.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/restaurant/dining_table.png"))); // NOI18N
         btnTable.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
+        btnProfile.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        btnProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/restaurant/employees.png"))); // NOI18N
+        btnProfile.setText("Felhasználók");
+        btnProfile.setToolTipText("");
+        btnProfile.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnProfile.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnProfile.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
         btnProduct.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         btnProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/restaurant/menu.png"))); // NOI18N
         btnProduct.setText("Étlap/Itallap");
@@ -91,14 +85,6 @@ public class Restaurant extends javax.swing.JFrame {
         btnProduct.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/restaurant/menu.png"))); // NOI18N
         btnProduct.setVerifyInputWhenFocusTarget(false);
         btnProduct.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
-        btnProfile.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        btnProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/restaurant/employees.png"))); // NOI18N
-        btnProfile.setText("Felhasználók");
-        btnProfile.setToolTipText("");
-        btnProfile.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnProfile.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnProfile.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         btnBill.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         btnBill.setIcon(new javax.swing.ImageIcon(getClass().getResource("/restaurant/bill.png"))); // NOI18N
@@ -129,120 +115,138 @@ public class Restaurant extends javax.swing.JFrame {
         btnHelp.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnHelp.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        javax.swing.GroupLayout pnlOrderLayout = new javax.swing.GroupLayout(pnlOrder);
-        pnlOrder.setLayout(pnlOrderLayout);
-        pnlOrderLayout.setHorizontalGroup(
-            pnlOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 671, Short.MAX_VALUE)
+        jtpBase.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jtpBase.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        jtpOrder.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jtpOrder.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        javax.swing.GroupLayout jtpOrderLayout = new javax.swing.GroupLayout(jtpOrder);
+        jtpOrder.setLayout(jtpOrderLayout);
+        jtpOrderLayout.setHorizontalGroup(
+            jtpOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 657, Short.MAX_VALUE)
         );
-        pnlOrderLayout.setVerticalGroup(
-            pnlOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 568, Short.MAX_VALUE)
+        jtpOrderLayout.setVerticalGroup(
+            jtpOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 541, Short.MAX_VALUE)
         );
+
+        jtpBase.addTab("Rendelés", jtpOrder);
+
+        jtpTable.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jtpTable.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        javax.swing.GroupLayout jtpTableLayout = new javax.swing.GroupLayout(jtpTable);
+        jtpTable.setLayout(jtpTableLayout);
+        jtpTableLayout.setHorizontalGroup(
+            jtpTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 657, Short.MAX_VALUE)
+        );
+        jtpTableLayout.setVerticalGroup(
+            jtpTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 541, Short.MAX_VALUE)
+        );
+
+        jtpBase.addTab("Asztalok", jtpTable);
+
+        jtpProfile.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jtpProfile.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        javax.swing.GroupLayout jtpProfileLayout = new javax.swing.GroupLayout(jtpProfile);
+        jtpProfile.setLayout(jtpProfileLayout);
+        jtpProfileLayout.setHorizontalGroup(
+            jtpProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 657, Short.MAX_VALUE)
+        );
+        jtpProfileLayout.setVerticalGroup(
+            jtpProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 541, Short.MAX_VALUE)
+        );
+
+        jtpBase.addTab("Felhasználók", jtpProfile);
+
+        jtpProduct.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jtpProduct.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        javax.swing.GroupLayout jtpProductLayout = new javax.swing.GroupLayout(jtpProduct);
+        jtpProduct.setLayout(jtpProductLayout);
+        jtpProductLayout.setHorizontalGroup(
+            jtpProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 657, Short.MAX_VALUE)
+        );
+        jtpProductLayout.setVerticalGroup(
+            jtpProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 541, Short.MAX_VALUE)
+        );
+
+        jtpBase.addTab("Étlap/Itallap", jtpProduct);
+
+        jtpBill.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jtpBill.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        javax.swing.GroupLayout jtpBillLayout = new javax.swing.GroupLayout(jtpBill);
+        jtpBill.setLayout(jtpBillLayout);
+        jtpBillLayout.setHorizontalGroup(
+            jtpBillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 657, Short.MAX_VALUE)
+        );
+        jtpBillLayout.setVerticalGroup(
+            jtpBillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 541, Short.MAX_VALUE)
+        );
+
+        jtpBase.addTab("Számla", jtpBill);
+
+        jtpReport.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jtpReport.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        javax.swing.GroupLayout jtpReportLayout = new javax.swing.GroupLayout(jtpReport);
+        jtpReport.setLayout(jtpReportLayout);
+        jtpReportLayout.setHorizontalGroup(
+            jtpReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 657, Short.MAX_VALUE)
+        );
+        jtpReportLayout.setVerticalGroup(
+            jtpReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 541, Short.MAX_VALUE)
+        );
+
+        jtpBase.addTab("Kimutatás", jtpReport);
 
         jMenuBar1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jMenuBar1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        mnFile.setMnemonic('F');
-        mnFile.setText("Fájl");
+        jmFile.setMnemonic('F');
+        jmFile.setText("File");
 
-        mniNeworder.setText("Új rendelés");
-        mnFile.add(mniNeworder);
-        mnFile.add(jSeparator1);
+        jmbOpen.setMnemonic('N');
+        jmbOpen.setText("Nyitás");
+        jmFile.add(jmbOpen);
+        jmFile.add(jSeparator1);
 
-        mniOpen.setText("Megnyitás");
-        mnFile.add(mniOpen);
+        jmbSave.setMnemonic('M');
+        jmbSave.setText("Mentés");
+        jmFile.add(jmbSave);
 
-        mniSave.setText("Mentés");
-        mnFile.add(mniSave);
-        mnFile.add(jSeparator2);
+        jmbSaveas.setMnemonic('n');
+        jmbSaveas.setText("Mentés másként");
+        jmFile.add(jmbSaveas);
+        jmFile.add(jSeparator2);
 
-        mniClose.setText("Bezárás");
-        mnFile.add(mniClose);
+        jmbClose.setMnemonic('Z');
+        jmbClose.setText("Zárás");
+        jmFile.add(jmbClose);
 
-        jMenuBar1.add(mnFile);
+        jMenuBar1.add(jmFile);
 
-        mnTable.setMnemonic('A');
-        mnTable.setText("Asztalok");
+        jmOption.setMnemonic('B');
+        jmOption.setText("Beállítások");
+        jMenuBar1.add(jmOption);
 
-        mniOpened.setText("Nyitott asztalok");
-        mnTable.add(mniOpened);
-
-        mniFree.setText("Szabad asztalok");
-        mnTable.add(mniFree);
-
-        mniReserved.setText("Foglalt asztalok");
-        mnTable.add(mniReserved);
-
-        jMenuBar1.add(mnTable);
-
-        mnProfile.setMnemonic('F');
-        mnProfile.setText("Felhasználók");
-
-        mniNew.setLabel("Új felhasználó");
-        mnProfile.add(mniNew);
-
-        mniEdit.setLabel("Felhasználó beállítások");
-        mnProfile.add(mniEdit);
-
-        mniDelete.setLabel("Felhasználó törlése");
-        mnProfile.add(mniDelete);
-
-        jMenuBar1.add(mnProfile);
-
-        mnProduct.setMnemonic('T');
-        mnProduct.setText("Termékek");
-
-        mniDrink.setText("Itallap");
-        mnProduct.add(mniDrink);
-
-        mniFood.setText("Étlap");
-        mnProduct.add(mniFood);
-
-        jMenuBar1.add(mnProduct);
-
-        mnBill.setMnemonic('z');
-        mnBill.setText("Számlázás");
-        mnBill.setToolTipText("");
-
-        mniBill.setText("Számla készítése");
-        mniBill.setActionCommand("");
-        mnBill.add(mniBill);
-
-        mniStorno.setText("Számla sztornó");
-        mniStorno.setActionCommand("");
-        mnBill.add(mniStorno);
-
-        jMenuBar1.add(mnBill);
-
-        mnReport.setMnemonic('K');
-        mnReport.setText("Kimutatások");
-
-        mniDay.setText("Napi forgalom");
-        mnReport.add(mniDay);
-
-        mniDate.setText("Forgalom lekérdezés");
-        mnReport.add(mniDate);
-
-        jMenuBar1.add(mnReport);
-
-        mnOption.setMnemonic('B');
-        mnOption.setText("Beállítások");
-
-        mniOption.setText("Hamarosan...");
-        mnOption.add(mniOption);
-
-        jMenuBar1.add(mnOption);
-
-        mnHelp.setMnemonic('S');
-        mnHelp.setText("Súgó");
-
-        mniNamecard.setText("Névjegy");
-        mnHelp.add(mniNamecard);
-
-        mniHelp.setText("Súgó");
-        mnHelp.add(mniHelp);
-
-        jMenuBar1.add(mnHelp);
+        jmHelp.setMnemonic('S');
+        jmHelp.setText("Súgó");
+        jMenuBar1.add(jmHelp);
 
         setJMenuBar(jMenuBar1);
 
@@ -252,19 +256,17 @@ public class Restaurant extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlOrder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jtpBase, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(btnHelp, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnOption, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnReport, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnBill, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnProduct, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnProfile, javax.swing.GroupLayout.Alignment.TRAILING))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(btnOrder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnTable, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addComponent(btnOption)
+                    .addComponent(btnHelp)
+                    .addComponent(btnReport)
+                    .addComponent(btnBill)
+                    .addComponent(btnProduct)
+                    .addComponent(btnProfile)
+                    .addComponent(btnOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTable))
                 .addContainerGap())
         );
 
@@ -272,13 +274,13 @@ public class Restaurant extends javax.swing.JFrame {
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlOrder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jtpBase, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnTable, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -292,10 +294,13 @@ public class Restaurant extends javax.swing.JFrame {
                         .addComponent(btnOption, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnHelp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnBill, btnHelp, btnOption, btnOrder, btnProduct, btnProfile, btnReport, btnTable});
+
+        jtpBase.getAccessibleContext().setAccessibleName("Restaurant");
+        jtpBase.getAccessibleContext().setAccessibleDescription("");
 
         pack();
         setLocationRelativeTo(null);
@@ -327,33 +332,19 @@ public class Restaurant extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
-    private javax.swing.JMenu mnBill;
-    private javax.swing.JMenu mnFile;
-    private javax.swing.JMenu mnHelp;
-    private javax.swing.JMenu mnOption;
-    private javax.swing.JMenu mnProduct;
-    private javax.swing.JMenu mnProfile;
-    private javax.swing.JMenu mnReport;
-    private javax.swing.JMenu mnTable;
-    private javax.swing.JMenuItem mniBill;
-    private javax.swing.JMenuItem mniClose;
-    private javax.swing.JMenuItem mniDate;
-    private javax.swing.JMenuItem mniDay;
-    private javax.swing.JMenuItem mniDelete;
-    private javax.swing.JMenuItem mniDrink;
-    private javax.swing.JMenuItem mniEdit;
-    private javax.swing.JMenuItem mniFood;
-    private javax.swing.JMenuItem mniFree;
-    private javax.swing.JMenuItem mniHelp;
-    private javax.swing.JMenuItem mniNamecard;
-    private javax.swing.JMenuItem mniNew;
-    private javax.swing.JMenuItem mniNeworder;
-    private javax.swing.JMenuItem mniOpen;
-    private javax.swing.JMenuItem mniOpened;
-    private javax.swing.JMenuItem mniOption;
-    private javax.swing.JMenuItem mniReserved;
-    private javax.swing.JMenuItem mniSave;
-    private javax.swing.JMenuItem mniStorno;
-    private javax.swing.JPanel pnlOrder;
+    private javax.swing.JMenu jmFile;
+    private javax.swing.JMenu jmHelp;
+    private javax.swing.JMenu jmOption;
+    private javax.swing.JMenuItem jmbClose;
+    private javax.swing.JMenuItem jmbOpen;
+    private javax.swing.JMenuItem jmbSave;
+    private javax.swing.JMenuItem jmbSaveas;
+    private javax.swing.JTabbedPane jtpBase;
+    private javax.swing.JPanel jtpBill;
+    private javax.swing.JPanel jtpOrder;
+    private javax.swing.JPanel jtpProduct;
+    private javax.swing.JPanel jtpProfile;
+    private javax.swing.JPanel jtpReport;
+    private javax.swing.JPanel jtpTable;
     // End of variables declaration//GEN-END:variables
 }
