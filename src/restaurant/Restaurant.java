@@ -445,7 +445,7 @@ public class Restaurant extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAdd_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd_1ActionPerformed
-        ab.asztal_hozzaad(txtTable.getText(),txtChair.getText(),txtPlace.getText());
+        ab.asztal_hozzaad(Integer.parseInt(txtTable.getText()), Integer.parseInt(txtChair.getText()),txtPlace.getText());
         ab.asztal_be(tblTable_1, cbxTable_1);
     }//GEN-LAST:event_btnAdd_1ActionPerformed
 

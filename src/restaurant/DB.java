@@ -102,15 +102,16 @@ public class DB {
      * @param chr
      * @param hly
      */
-    public void asztal_hozzaad(String tbl, String chr, String hly) {
-        if (hly.isEmpty())
-            return;
+    public void asztal_hozzaad(int tbl, int chr, String hly) {
         String s = "INSERT INTO asztalok (asztal, szek, helyseg) VALUES(?,?,?);";
         try (Connection kapcs = DriverManager.getConnection(dbUrl, user, pass);
                 PreparedStatement parancs = kapcs.prepareStatement(s)) {
-            parancs.setString(1, levag(hly.trim(), 4));
-            parancs.setString(2, levag(hly.trim(), 4));
-            parancs.setString(3, levag(hly.trim(), 20));
+            parancs.setInt(1, tbl);
+            parancs.setInt(2, chr);
+            if (!hly.isEmpty())
+                parancs.setString(3,levag(hly.trim(), 20));
+            else
+                parancs.setNull(3,java.sql.Types.VARCHAR);
             parancs.executeUpdate();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
