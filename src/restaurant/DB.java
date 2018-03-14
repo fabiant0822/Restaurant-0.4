@@ -43,8 +43,8 @@ public class DB {
     }
 
     /**
-     * Beolvassa a termek tábla rekordjait, teremszám szerinti sorrendben.
-     * Az adatokat betölti a táblába és a combobox.ba
+     * Beolvassa az asztalok tábla rekordjait, asztalszám szerinti sorrendben.
+     * Az adatokat betölti a táblába.
      * @param tbl betölti ebbe a táblába a terméket
      * @param cb és betölti a comboboxba is
      */
@@ -97,7 +97,8 @@ public class DB {
     }
     
     /**
-     * Hozzáadja az adatbázishoz a teremszámot és a felhasználását a teremnek
+     * Hozzáadja az adatbázishoz az asztalszámot, a székek darabszámát
+     * és a helységet.
      * @param tbl
      * @param chr
      * @param hly
@@ -115,6 +116,34 @@ public class DB {
             parancs.executeUpdate();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }
+    
+    /**
+     * Beolvassa az eszközök tábla rekordjait a név szerinti sorrendben.
+     * Az adatokat betölti a táblába és a combobox.ba
+     * @param tbl betölti ebbe a táblába a terméket
+     */
+    public void tetelek_be(JTable tbl) {
+        final DefaultTableModel tm = (DefaultTableModel)tbl.getModel();
+        String s = "SELECT * FROM tetelek ORDER BY tetel;";
+
+        try (Connection kapcs = DriverManager.getConnection(dbUrl,user,pass);
+             PreparedStatement parancs = kapcs.prepareStatement(s);
+             ResultSet eredmeny = parancs.executeQuery()) {
+            tm.setRowCount(0);
+            while (eredmeny.next()) {
+                Object sor[] = {
+                    eredmeny.getInt("tetelID"),
+                    eredmeny.getString("tetel"),
+                    eredmeny.getInt("egysegar"),
+                    eredmeny.getString("egyseg")
+                };
+                tm.addRow(sor);
+            }            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+            System.exit(2);
         }
     }
 }
