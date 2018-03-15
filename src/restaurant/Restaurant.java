@@ -140,6 +140,14 @@ public class Restaurant extends javax.swing.JFrame {
         btnMod_1 = new javax.swing.JButton();
         btnDel_1 = new javax.swing.JButton();
         jtpProfile = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        txtName = new javax.swing.JTextField();
+        txtPass = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jtpProduct = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblProduct_1 = new javax.swing.JTable();
@@ -197,6 +205,11 @@ public class Restaurant extends javax.swing.JFrame {
         btnProfile.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnProfile.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnProfile.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProfileActionPerformed(evt);
+            }
+        });
 
         btnProduct.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         btnProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/restaurant/menu.png"))); // NOI18N
@@ -208,6 +221,11 @@ public class Restaurant extends javax.swing.JFrame {
         btnProduct.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/restaurant/menu.png"))); // NOI18N
         btnProduct.setVerifyInputWhenFocusTarget(false);
         btnProduct.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnProduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProductActionPerformed(evt);
+            }
+        });
 
         btnBill.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         btnBill.setIcon(new javax.swing.ImageIcon(getClass().getResource("/restaurant/bill.png"))); // NOI18N
@@ -377,15 +395,70 @@ public class Restaurant extends javax.swing.JFrame {
         jtpProfile.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jtpProfile.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setText("Felhasználónév:");
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel9.setText("Jelszó:");
+
+        txtName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtName.setPreferredSize(new java.awt.Dimension(300, 23));
+
+        txtPass.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtPass.setPreferredSize(new java.awt.Dimension(300, 23));
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton1.setText("Beállít");
+
+        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton2.setText("Módosít");
+
+        jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton3.setText("Töröl");
+
+        jButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton4.setText("Mentés");
+
         javax.swing.GroupLayout jtpProfileLayout = new javax.swing.GroupLayout(jtpProfile);
         jtpProfile.setLayout(jtpProfileLayout);
         jtpProfileLayout.setHorizontalGroup(
             jtpProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 657, Short.MAX_VALUE)
+            .addGroup(jtpProfileLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jtpProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jtpProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtName, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                    .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jtpProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jtpProfileLayout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE))
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jtpProfileLayout.setVerticalGroup(
             jtpProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 541, Short.MAX_VALUE)
+            .addGroup(jtpProfileLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jtpProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jtpProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4))
+                .addContainerGap(469, Short.MAX_VALUE))
         );
 
         jtpBase.addTab("Felhasználók", jtpProfile);
@@ -646,6 +719,7 @@ public class Restaurant extends javax.swing.JFrame {
     private void btnAdd_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd_1ActionPerformed
         ab.asztal_hozzaad(Integer.parseInt(txtTable.getText()), Integer.parseInt(txtChair.getText()),txtPlace.getText());
         ab.asztal_be(tblTable_1);
+            asztal_max_kijelol();
             txtTable.requestFocus();
             txtTable.selectAll();
     }//GEN-LAST:event_btnAdd_1ActionPerformed
@@ -657,9 +731,18 @@ public class Restaurant extends javax.swing.JFrame {
     private void btnAdd_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd_2ActionPerformed
         ab.tetel_hozzaad(txtProduct.getText(), Integer.parseInt(txtPrice.getText()), txtUnit.getText());
         ab.tetelek_be(tblProduct_1);
+            tetelek_max_kijelol();    
             txtProduct.requestFocus();
             txtProduct.selectAll();
     }//GEN-LAST:event_btnAdd_2ActionPerformed
+
+    private void btnProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductActionPerformed
+        jtpBase.setSelectedIndex(3);
+    }//GEN-LAST:event_btnProductActionPerformed
+
+    private void btnProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfileActionPerformed
+        jtpBase.setSelectedIndex(2);
+    }//GEN-LAST:event_btnProfileActionPerformed
 
     /**
      * @param args the command line arguments
@@ -688,12 +771,18 @@ public class Restaurant extends javax.swing.JFrame {
     private javax.swing.JButton btnReport;
     private javax.swing.JButton btnTable;
     private javax.swing.JButton btn_Del_2;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -716,6 +805,8 @@ public class Restaurant extends javax.swing.JFrame {
     private javax.swing.JTable tblProduct_1;
     private javax.swing.JTable tblTable_1;
     private javax.swing.JTextField txtChair;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtPass;
     private javax.swing.JTextField txtPlace;
     private javax.swing.JTextField txtPrice;
     private javax.swing.JTextField txtProduct;
