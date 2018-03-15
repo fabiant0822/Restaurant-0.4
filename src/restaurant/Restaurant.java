@@ -384,6 +384,11 @@ public class Restaurant extends javax.swing.JFrame {
         btnAdd_2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnAdd_2.setText("Hozzáad");
         btnAdd_2.setPreferredSize(new java.awt.Dimension(83, 25));
+        btnAdd_2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdd_2ActionPerformed(evt);
+            }
+        });
 
         btnMod_2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnMod_2.setText("Módosít");
@@ -590,6 +595,11 @@ public class Restaurant extends javax.swing.JFrame {
     private void btnTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTableActionPerformed
         jtpBase.setSelectedIndex(1);
     }//GEN-LAST:event_btnTableActionPerformed
+
+    private void btnAdd_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd_2ActionPerformed
+        ab.tetel_hozzaad(txtProduct.getText(), Integer.parseInt(txtPrice.getText()), txtUnit.getText());
+        ab.tetelek_be(tblProduct_1);
+    }//GEN-LAST:event_btnAdd_2ActionPerformed
 
     /**
      * @param args the command line arguments

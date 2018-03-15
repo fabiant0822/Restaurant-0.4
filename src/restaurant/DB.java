@@ -120,8 +120,8 @@ public class DB {
     }
     
     /**
-     * Beolvassa az eszközök tábla rekordjait a név szerinti sorrendben.
-     * Az adatokat betölti a táblába és a combobox.ba
+     * Beolvassa a tetelek tábla rekordjait a név szerinti sorrendben.
+     * Az adatokat betölti a táblába.
      * @param tbl betölti ebbe a táblába a terméket
      */
     public void tetelek_be(JTable tbl) {
@@ -144,6 +144,21 @@ public class DB {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
             System.exit(2);
+        }
+    }
+    
+    public void tetel_hozzaad(String tetel, int egysegar, String egyseg) {
+        if (tetel.isEmpty())
+            return;
+        String s = "INSERT INTO tetelek (tetel,egysegar,egyseg) VALUES(?,?,?);";
+        try (Connection kapcs = DriverManager.getConnection(dbUrl, user, pass);
+                PreparedStatement parancs = kapcs.prepareStatement(s)) {
+            parancs.setString(2, levag(tetel.trim(), 50));
+            parancs.setInt(3, egysegar);
+            parancs.setString(4, levag(egyseg.trim(), 5));
+            parancs.executeUpdate();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
 }
