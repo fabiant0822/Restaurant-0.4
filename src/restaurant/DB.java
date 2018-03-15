@@ -46,9 +46,8 @@ public class DB {
      * Beolvassa az asztalok tábla rekordjait, asztalszám szerinti sorrendben.
      * Az adatokat betölti a táblába.
      * @param tbl betölti ebbe a táblába a terméket
-     * @param cb és betölti a comboboxba is
      */
-    public void asztal_be(JTable tbl, JComboBox cb) {
+    public void asztal_be(JTable tbl) {
         final DefaultTableModel tm = (DefaultTableModel)tbl.getModel();
         String s = "SELECT * FROM asztalok ORDER BY asztal;";
 
@@ -56,7 +55,6 @@ public class DB {
                 PreparedStatement parancs = kapcs.prepareStatement(s);
                 ResultSet eredmeny = parancs.executeQuery()) {
             tm.setRowCount(0);
-            cb.removeAllItems();
             while (eredmeny.next()) {
                 Object sor[] = {
                     eredmeny.getInt("asztal"),
@@ -64,7 +62,6 @@ public class DB {
                     eredmeny.getString("helyseg")
                 };
                 tm.addRow(sor);
-                cb.addItem(eredmeny.getString("asztal"));
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -147,15 +144,16 @@ public class DB {
         }
     }
     
+   
     public void tetel_hozzaad(String tetel, int egysegar, String egyseg) {
         if (tetel.isEmpty())
             return;
         String s = "INSERT INTO tetelek (tetel,egysegar,egyseg) VALUES(?,?,?);";
         try (Connection kapcs = DriverManager.getConnection(dbUrl, user, pass);
-                PreparedStatement parancs = kapcs.prepareStatement(s)) {
-            parancs.setString(2, levag(tetel.trim(), 50));
-            parancs.setInt(3, egysegar);
-            parancs.setString(4, levag(egyseg.trim(), 5));
+            PreparedStatement parancs = kapcs.prepareStatement(s)) {
+            parancs.setString(1, levag(tetel.trim(), 50));
+            parancs.setInt(2, egysegar);
+            parancs.setString(3, levag(egyseg.trim(), 5));
             parancs.executeUpdate();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());

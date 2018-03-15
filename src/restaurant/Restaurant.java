@@ -18,7 +18,7 @@ public class Restaurant extends javax.swing.JFrame {
         ImageIcon ikon = new ImageIcon(getClass().getResource("my16.png"));
         setIconImage(ikon.getImage());
         ab = new DB();
-        ab.asztal_be(tblTable_1, cbxTable_1);
+        ab.asztal_be(tblTable_1);
         ab.tetelek_be(tblProduct_1);
     }
     
@@ -43,6 +43,74 @@ public class Restaurant extends javax.swing.JFrame {
             txtPrice.setText(e.toString());
         else 
             txtPrice.setText("");
+    }
+    
+     private int get_asztal(String tbl) {
+        int i = 0;
+        while (!tblTable_1.getValueAt(i, 1).equals(tbl))
+            i++;
+        return Integer.parseInt(tblTable_1.getValueAt(i, 0).toString());
+    }
+    
+    private int get_tetelID (String ttl) {
+        int i = 0;
+        while (!tblProduct_1.getValueAt(i, 1).equals(ttl))
+            i++;
+        return Integer.parseInt(tblProduct_1.getValueAt(i, 0).toString());
+    }
+    
+    private void asztal_max_kijelol() {
+        int sordb = tblTable_1.getRowCount();
+        int max = 0;
+        int sor = 0;
+        for (int i = 0; i < sordb; i++) {
+            int n = Integer.parseInt(tblTable_1.getValueAt(i, 0).toString());
+            if (n > max) {
+                max = n;
+                sor = i;
+            }
+        }
+        tblTable_1.setRowSelectionInterval(sor, sor);
+        asztalok_tablabol();
+    }
+    
+     private void tetelek_max_kijelol() {
+        int sordb = tblProduct_1.getRowCount();
+        int max = 0;
+        int sor = 0;
+        for (int i = 0; i < sordb; i++) {
+            int n = Integer.parseInt(tblProduct_1.getValueAt(i, 0).toString());
+            if (n > max) {
+                max = n;
+                sor = i;
+            }
+        }
+        tblProduct_1.setRowSelectionInterval(sor, sor);
+        tetelek_tablabol();
+    }
+     
+    private void asztal_kijelol(int tid) {
+        int sordb = tblTable_1.getRowCount();
+        for (int i = 0; i < sordb; i++) {
+            int id = Integer.parseInt(tblTable_1.getValueAt(i, 0).toString());
+            if (id == tid) {
+                tblTable_1.setRowSelectionInterval(i, i);
+                asztalok_tablabol();
+                break;
+            }
+        }
+    }
+    
+    private void tetelek_kijelol(int eid) {
+        int sordb = tblProduct_1.getRowCount();
+        for (int i = 0; i < sordb; i++) {
+            int id = Integer.parseInt(tblProduct_1.getValueAt(i, 0).toString());
+            if (id == eid) {
+                tblProduct_1.setRowSelectionInterval(i, i);
+                tetelek_tablabol();
+                break;
+            }
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -71,7 +139,6 @@ public class Restaurant extends javax.swing.JFrame {
         btnAdd_1 = new javax.swing.JButton();
         btnMod_1 = new javax.swing.JButton();
         btnDel_1 = new javax.swing.JButton();
-        cbxTable_1 = new javax.swing.JComboBox<>();
         jtpProfile = new javax.swing.JPanel();
         jtpProduct = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -256,8 +323,6 @@ public class Restaurant extends javax.swing.JFrame {
         btnDel_1.setText("Töröl");
         btnDel_1.setToolTipText("");
 
-        cbxTable_1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "asztal" }));
-
         javax.swing.GroupLayout jtpTableLayout = new javax.swing.GroupLayout(jtpTable);
         jtpTable.setLayout(jtpTableLayout);
         jtpTableLayout.setHorizontalGroup(
@@ -277,16 +342,11 @@ public class Restaurant extends javax.swing.JFrame {
                             .addComponent(txtChair)
                             .addComponent(txtPlace, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jtpTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jtpTableLayout.createSequentialGroup()
-                                .addComponent(btnAdd_1, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnMod_1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnDel_1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jtpTableLayout.createSequentialGroup()
-                                .addComponent(cbxTable_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                        .addComponent(btnAdd_1, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnMod_1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnDel_1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jtpTableLayout.setVerticalGroup(
@@ -295,8 +355,7 @@ public class Restaurant extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addGroup(jtpTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbxTable_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jtpTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtChair, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -383,7 +442,6 @@ public class Restaurant extends javax.swing.JFrame {
 
         btnAdd_2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnAdd_2.setText("Hozzáad");
-        btnAdd_2.setPreferredSize(new java.awt.Dimension(83, 25));
         btnAdd_2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAdd_2ActionPerformed(evt);
@@ -419,9 +477,7 @@ public class Restaurant extends javax.swing.JFrame {
                             .addGroup(jtpProductLayout.createSequentialGroup()
                                 .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jtpProductLayout.createSequentialGroup()
-                                .addComponent(txtUnit, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(txtUnit, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(10, 10, 10)
                         .addComponent(btnAdd_2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -452,7 +508,7 @@ public class Restaurant extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(txtUnit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jtpProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnAdd_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAdd_2)
                         .addComponent(btnMod_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btn_Del_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
@@ -589,7 +645,9 @@ public class Restaurant extends javax.swing.JFrame {
 
     private void btnAdd_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd_1ActionPerformed
         ab.asztal_hozzaad(Integer.parseInt(txtTable.getText()), Integer.parseInt(txtChair.getText()),txtPlace.getText());
-        ab.asztal_be(tblTable_1, cbxTable_1);
+        ab.asztal_be(tblTable_1);
+            txtTable.requestFocus();
+            txtTable.selectAll();
     }//GEN-LAST:event_btnAdd_1ActionPerformed
 
     private void btnTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTableActionPerformed
@@ -599,6 +657,8 @@ public class Restaurant extends javax.swing.JFrame {
     private void btnAdd_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd_2ActionPerformed
         ab.tetel_hozzaad(txtProduct.getText(), Integer.parseInt(txtPrice.getText()), txtUnit.getText());
         ab.tetelek_be(tblProduct_1);
+            txtProduct.requestFocus();
+            txtProduct.selectAll();
     }//GEN-LAST:event_btnAdd_2ActionPerformed
 
     /**
@@ -628,7 +688,6 @@ public class Restaurant extends javax.swing.JFrame {
     private javax.swing.JButton btnReport;
     private javax.swing.JButton btnTable;
     private javax.swing.JButton btn_Del_2;
-    private javax.swing.JComboBox<String> cbxTable_1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
