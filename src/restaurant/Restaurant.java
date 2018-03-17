@@ -116,6 +116,7 @@ public class Restaurant extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         btnOrder = new javax.swing.JButton();
         btnTable = new javax.swing.JButton();
@@ -125,8 +126,7 @@ public class Restaurant extends javax.swing.JFrame {
         btnReport = new javax.swing.JButton();
         btnOption = new javax.swing.JButton();
         btnHelp = new javax.swing.JButton();
-        jtpBase = new javax.swing.JTabbedPane();
-        jtpOrder = new javax.swing.JPanel();
+        btn = new javax.swing.JTabbedPane();
         jtpTable = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -148,6 +148,8 @@ public class Restaurant extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        txtPass1 = new javax.swing.JTextField();
         jtpProduct = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblProduct_1 = new javax.swing.JTable();
@@ -162,6 +164,20 @@ public class Restaurant extends javax.swing.JFrame {
         btn_Del_2 = new javax.swing.JButton();
         jtpBill = new javax.swing.JPanel();
         jtpReport = new javax.swing.JPanel();
+        jtpOrder = new javax.swing.JPanel();
+        cbxTable_1 = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        cbxProduct_1 = new javax.swing.JComboBox<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblOrder = new javax.swing.JTable();
+        jLabel12 = new javax.swing.JLabel();
+        txtPiece = new javax.swing.JTextField();
+        btnAdd_3 = new javax.swing.JButton();
+        btnMod_3 = new javax.swing.JButton();
+        btnDel_3 = new javax.swing.JButton();
+        btnBill_1 = new javax.swing.JButton();
+        btnSave_1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmFile = new javax.swing.JMenu();
         jmbOpen = new javax.swing.JMenuItem();
@@ -176,20 +192,41 @@ public class Restaurant extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("FBNT Restaurant");
         setPreferredSize(new java.awt.Dimension(800, 625));
-        setSize(new java.awt.Dimension(800, 625));
+        setSize(new java.awt.Dimension(800, 640));
+        getContentPane().setLayout(new java.awt.GridBagLayout());
 
+        btnOrder.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnOrder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/restaurant/notes32.png"))); // NOI18N
         btnOrder.setText("Rendelés");
         btnOrder.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnOrder.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnOrder.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnOrder.setMaximumSize(new java.awt.Dimension(50, 55));
+        btnOrder.setMinimumSize(new java.awt.Dimension(50, 55));
+        btnOrder.setPreferredSize(new java.awt.Dimension(60, 55));
         btnOrder.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOrderActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 50;
+        gridBagConstraints.ipady = 12;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(28, 11, 0, 10);
+        getContentPane().add(btnOrder, gridBagConstraints);
 
-        btnTable.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        btnTable.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnTable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/restaurant/dining_table.png"))); // NOI18N
         btnTable.setText("Asztalok");
         btnTable.setAutoscrolls(true);
         btnTable.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnTable.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnTable.setMaximumSize(new java.awt.Dimension(50, 55));
+        btnTable.setMinimumSize(new java.awt.Dimension(50, 55));
         btnTable.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/restaurant/dining_table.png"))); // NOI18N
         btnTable.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnTable.addActionListener(new java.awt.event.ActionListener() {
@@ -197,6 +234,15 @@ public class Restaurant extends javax.swing.JFrame {
                 btnTableActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 50;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 11, 0, 10);
+        getContentPane().add(btnTable, gridBagConstraints);
+        btnTable.getAccessibleContext().setAccessibleDescription("");
 
         btnProfile.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         btnProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/restaurant/employees.png"))); // NOI18N
@@ -210,6 +256,14 @@ public class Restaurant extends javax.swing.JFrame {
                 btnProfileActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 28;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 11, 0, 10);
+        getContentPane().add(btnProfile, gridBagConstraints);
 
         btnProduct.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         btnProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/restaurant/menu.png"))); // NOI18N
@@ -226,6 +280,14 @@ public class Restaurant extends javax.swing.JFrame {
                 btnProductActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.ipadx = 32;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 11, 0, 10);
+        getContentPane().add(btnProduct, gridBagConstraints);
 
         btnBill.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         btnBill.setIcon(new javax.swing.ImageIcon(getClass().getResource("/restaurant/bill.png"))); // NOI18N
@@ -233,6 +295,14 @@ public class Restaurant extends javax.swing.JFrame {
         btnBill.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnBill.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnBill.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.ipadx = 58;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 11, 0, 10);
+        getContentPane().add(btnBill, gridBagConstraints);
 
         btnReport.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         btnReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/restaurant/report.png"))); // NOI18N
@@ -241,6 +311,14 @@ public class Restaurant extends javax.swing.JFrame {
         btnReport.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnReport.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnReport.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.ipadx = 42;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 11, 0, 10);
+        getContentPane().add(btnReport, gridBagConstraints);
 
         btnOption.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         btnOption.setIcon(new javax.swing.ImageIcon(getClass().getResource("/restaurant/settings.png"))); // NOI18N
@@ -248,6 +326,14 @@ public class Restaurant extends javax.swing.JFrame {
         btnOption.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnOption.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnOption.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.ipadx = 38;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 11, 0, 10);
+        getContentPane().add(btnOption, gridBagConstraints);
 
         btnHelp.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         btnHelp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/restaurant/help.png"))); // NOI18N
@@ -255,25 +341,17 @@ public class Restaurant extends javax.swing.JFrame {
         btnHelp.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnHelp.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnHelp.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.ipadx = 62;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 11, 11, 10);
+        getContentPane().add(btnHelp, gridBagConstraints);
 
-        jtpBase.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jtpBase.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-
-        jtpOrder.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jtpOrder.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-
-        javax.swing.GroupLayout jtpOrderLayout = new javax.swing.GroupLayout(jtpOrder);
-        jtpOrder.setLayout(jtpOrderLayout);
-        jtpOrderLayout.setHorizontalGroup(
-            jtpOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 657, Short.MAX_VALUE)
-        );
-        jtpOrderLayout.setVerticalGroup(
-            jtpOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 541, Short.MAX_VALUE)
-        );
-
-        jtpBase.addTab("Rendelés", jtpOrder);
+        btn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jtpTable.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jtpTable.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -360,7 +438,7 @@ public class Restaurant extends javax.swing.JFrame {
                             .addComponent(txtChair)
                             .addComponent(txtPlace, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnAdd_1, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+                        .addComponent(btnAdd_1, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnMod_1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -390,7 +468,7 @@ public class Restaurant extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jtpBase.addTab("Asztalok", jtpTable);
+        btn.addTab("Asztalok", jtpTable);
 
         jtpProfile.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jtpProfile.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -408,7 +486,7 @@ public class Restaurant extends javax.swing.JFrame {
         txtPass.setPreferredSize(new java.awt.Dimension(300, 23));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setText("Beállít");
+        jButton1.setText("Hozzáad");
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton2.setText("Módosít");
@@ -419,6 +497,12 @@ public class Restaurant extends javax.swing.JFrame {
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton4.setText("Mentés");
 
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel10.setText("Jelszó ismét:");
+
+        txtPass1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtPass1.setPreferredSize(new java.awt.Dimension(300, 23));
+
         javax.swing.GroupLayout jtpProfileLayout = new javax.swing.GroupLayout(jtpProfile);
         jtpProfile.setLayout(jtpProfileLayout);
         jtpProfileLayout.setHorizontalGroup(
@@ -427,11 +511,13 @@ public class Restaurant extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jtpProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
-                    .addComponent(jLabel9))
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jtpProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtName, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                    .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
+                    .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                    .addComponent(txtPass1, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jtpProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jtpProfileLayout.createSequentialGroup()
@@ -439,7 +525,7 @@ public class Restaurant extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE))
+                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE))
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -458,10 +544,14 @@ public class Restaurant extends javax.swing.JFrame {
                     .addComponent(jLabel9)
                     .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4))
-                .addContainerGap(469, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jtpProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(txtPass1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(432, Short.MAX_VALUE))
         );
 
-        jtpBase.addTab("Felhasználók", jtpProfile);
+        btn.addTab("Felhasználók", jtpProfile);
 
         jtpProduct.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jtpProduct.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -547,11 +637,9 @@ public class Restaurant extends javax.swing.JFrame {
                             .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jtpProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jtpProductLayout.createSequentialGroup()
-                                .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtUnit, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(10, 10, 10)
+                        .addGap(10, 23, Short.MAX_VALUE)
                         .addComponent(btnAdd_2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnMod_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -585,11 +673,11 @@ public class Restaurant extends javax.swing.JFrame {
                         .addComponent(btnMod_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btn_Del_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jtpBase.addTab("Étlap/Itallap", jtpProduct);
+        btn.addTab("Étlap/Itallap", jtpProduct);
 
         jtpBill.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jtpBill.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -598,14 +686,14 @@ public class Restaurant extends javax.swing.JFrame {
         jtpBill.setLayout(jtpBillLayout);
         jtpBillLayout.setHorizontalGroup(
             jtpBillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 657, Short.MAX_VALUE)
+            .addGap(0, 633, Short.MAX_VALUE)
         );
         jtpBillLayout.setVerticalGroup(
             jtpBillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 541, Short.MAX_VALUE)
+            .addGap(0, 538, Short.MAX_VALUE)
         );
 
-        jtpBase.addTab("Számla", jtpBill);
+        btn.addTab("Számla", jtpBill);
 
         jtpReport.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jtpReport.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -614,14 +702,149 @@ public class Restaurant extends javax.swing.JFrame {
         jtpReport.setLayout(jtpReportLayout);
         jtpReportLayout.setHorizontalGroup(
             jtpReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 657, Short.MAX_VALUE)
+            .addGap(0, 633, Short.MAX_VALUE)
         );
         jtpReportLayout.setVerticalGroup(
             jtpReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 541, Short.MAX_VALUE)
+            .addGap(0, 538, Short.MAX_VALUE)
         );
 
-        jtpBase.addTab("Kimutatás", jtpReport);
+        btn.addTab("Kimutatás", jtpReport);
+
+        jtpOrder.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jtpOrder.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        cbxTable_1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setText("Asztal:");
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel11.setText("Tetel:");
+
+        cbxProduct_1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        tblOrder.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tblOrder.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "rendelesID", "Tétel", "Mennyiség", "Egységár"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(tblOrder);
+        if (tblOrder.getColumnModel().getColumnCount() > 0) {
+            tblOrder.getColumnModel().getColumn(0).setMinWidth(0);
+            tblOrder.getColumnModel().getColumn(0).setMaxWidth(0);
+            tblOrder.getColumnModel().getColumn(1).setPreferredWidth(400);
+        }
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel12.setText("Mennyiség:");
+
+        txtPiece.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        btnAdd_3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnAdd_3.setText("Hozzáad");
+
+        btnMod_3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnMod_3.setText("Módosít");
+
+        btnDel_3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnDel_3.setText("Töröl");
+
+        btnBill_1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnBill_1.setText("Számla");
+
+        btnSave_1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnSave_1.setText("Ment");
+
+        javax.swing.GroupLayout jtpOrderLayout = new javax.swing.GroupLayout(jtpOrder);
+        jtpOrder.setLayout(jtpOrderLayout);
+        jtpOrderLayout.setHorizontalGroup(
+            jtpOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jtpOrderLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jtpOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jtpOrderLayout.createSequentialGroup()
+                        .addComponent(btnSave_1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(16, 16, 16)
+                        .addComponent(btnBill_1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jtpOrderLayout.createSequentialGroup()
+                        .addGroup(jtpOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jtpOrderLayout.createSequentialGroup()
+                                .addGroup(jtpOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel7))
+                                .addGap(40, 40, 40)
+                                .addGroup(jtpOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jtpOrderLayout.createSequentialGroup()
+                                        .addComponent(cbxTable_1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(cbxProduct_1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jtpOrderLayout.createSequentialGroup()
+                                .addComponent(jLabel12)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtPiece, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnAdd_3, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnMod_3, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnDel_3, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18))))
+        );
+        jtpOrderLayout.setVerticalGroup(
+            jtpOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jtpOrderLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jtpOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(cbxTable_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jtpOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(cbxProduct_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jtpOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(txtPiece, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdd_3)
+                    .addComponent(btnMod_3)
+                    .addComponent(btnDel_3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jtpOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBill_1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSave_1, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        btn.addTab("Rendelés", jtpOrder);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 8;
+        gridBagConstraints.ipadx = -13;
+        gridBagConstraints.ipady = -5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(28, 10, 11, 0);
+        getContentPane().add(btn, gridBagConstraints);
+        btn.getAccessibleContext().setAccessibleName("Restaurant");
+        btn.getAccessibleContext().setAccessibleDescription("");
 
         jMenuBar1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jMenuBar1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -659,59 +882,6 @@ public class Restaurant extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jtpBase, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnOption)
-                    .addComponent(btnHelp)
-                    .addComponent(btnReport)
-                    .addComponent(btnBill)
-                    .addComponent(btnProduct)
-                    .addComponent(btnProfile)
-                    .addComponent(btnOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnBill, btnHelp, btnOption, btnOrder, btnProduct, btnProfile, btnReport, btnTable});
-
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jtpBase, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnTable, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnProduct, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnBill, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnOption, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnHelp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnBill, btnHelp, btnOption, btnOrder, btnProduct, btnProfile, btnReport, btnTable});
-
-        btnTable.getAccessibleContext().setAccessibleDescription("");
-        jtpBase.getAccessibleContext().setAccessibleName("Restaurant");
-        jtpBase.getAccessibleContext().setAccessibleDescription("");
-
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -725,7 +895,7 @@ public class Restaurant extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdd_1ActionPerformed
 
     private void btnTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTableActionPerformed
-        jtpBase.setSelectedIndex(1);
+        btn.setSelectedIndex(1);
     }//GEN-LAST:event_btnTableActionPerformed
 
     private void btnAdd_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd_2ActionPerformed
@@ -737,12 +907,16 @@ public class Restaurant extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdd_2ActionPerformed
 
     private void btnProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductActionPerformed
-        jtpBase.setSelectedIndex(3);
+        btn.setSelectedIndex(3);
     }//GEN-LAST:event_btnProductActionPerformed
 
     private void btnProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfileActionPerformed
-        jtpBase.setSelectedIndex(2);
+        btn.setSelectedIndex(2);
     }//GEN-LAST:event_btnProfileActionPerformed
+
+    private void btnOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderActionPerformed
+        btn.setSelectedIndex(0);
+    }//GEN-LAST:event_btnOrderActionPerformed
 
     /**
      * @param args the command line arguments
@@ -757,35 +931,48 @@ public class Restaurant extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTabbedPane btn;
     private javax.swing.JButton btnAdd_1;
     private javax.swing.JButton btnAdd_2;
+    private javax.swing.JButton btnAdd_3;
     private javax.swing.JButton btnBill;
+    private javax.swing.JButton btnBill_1;
     private javax.swing.JButton btnDel_1;
+    private javax.swing.JButton btnDel_3;
     private javax.swing.JButton btnHelp;
     private javax.swing.JButton btnMod_1;
     private javax.swing.JButton btnMod_2;
+    private javax.swing.JButton btnMod_3;
     private javax.swing.JButton btnOption;
     private javax.swing.JButton btnOrder;
     private javax.swing.JButton btnProduct;
     private javax.swing.JButton btnProfile;
     private javax.swing.JButton btnReport;
+    private javax.swing.JButton btnSave_1;
     private javax.swing.JButton btnTable;
     private javax.swing.JButton btn_Del_2;
+    private javax.swing.JComboBox<String> cbxProduct_1;
+    private javax.swing.JComboBox<String> cbxTable_1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JMenu jmFile;
@@ -795,18 +982,20 @@ public class Restaurant extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmbOpen;
     private javax.swing.JMenuItem jmbSave;
     private javax.swing.JMenuItem jmbSaveas;
-    private javax.swing.JTabbedPane jtpBase;
     private javax.swing.JPanel jtpBill;
     private javax.swing.JPanel jtpOrder;
     private javax.swing.JPanel jtpProduct;
     private javax.swing.JPanel jtpProfile;
     private javax.swing.JPanel jtpReport;
     private javax.swing.JPanel jtpTable;
+    private javax.swing.JTable tblOrder;
     private javax.swing.JTable tblProduct_1;
     private javax.swing.JTable tblTable_1;
     private javax.swing.JTextField txtChair;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPass;
+    private javax.swing.JTextField txtPass1;
+    private javax.swing.JTextField txtPiece;
     private javax.swing.JTextField txtPlace;
     private javax.swing.JTextField txtPrice;
     private javax.swing.JTextField txtProduct;
