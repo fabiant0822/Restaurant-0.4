@@ -127,6 +127,20 @@ public class Restaurant extends javax.swing.JFrame {
         btnOption = new javax.swing.JButton();
         btnHelp = new javax.swing.JButton();
         btn = new javax.swing.JTabbedPane();
+        jtpOrder = new javax.swing.JPanel();
+        cbxTable_1 = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        cbxProduct_1 = new javax.swing.JComboBox<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblOrder = new javax.swing.JTable();
+        jLabel12 = new javax.swing.JLabel();
+        txtPiece = new javax.swing.JTextField();
+        btnAdd_3 = new javax.swing.JButton();
+        btnMod_3 = new javax.swing.JButton();
+        btnDel_3 = new javax.swing.JButton();
+        btnBill_1 = new javax.swing.JButton();
+        btnSave_1 = new javax.swing.JButton();
         jtpTable = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -164,20 +178,6 @@ public class Restaurant extends javax.swing.JFrame {
         btn_Del_2 = new javax.swing.JButton();
         jtpBill = new javax.swing.JPanel();
         jtpReport = new javax.swing.JPanel();
-        jtpOrder = new javax.swing.JPanel();
-        cbxTable_1 = new javax.swing.JComboBox<>();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        cbxProduct_1 = new javax.swing.JComboBox<>();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tblOrder = new javax.swing.JTable();
-        jLabel12 = new javax.swing.JLabel();
-        txtPiece = new javax.swing.JTextField();
-        btnAdd_3 = new javax.swing.JButton();
-        btnMod_3 = new javax.swing.JButton();
-        btnDel_3 = new javax.swing.JButton();
-        btnBill_1 = new javax.swing.JButton();
-        btnSave_1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmFile = new javax.swing.JMenu();
         jmbOpen = new javax.swing.JMenuItem();
@@ -352,6 +352,129 @@ public class Restaurant extends javax.swing.JFrame {
 
         btn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        jtpOrder.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jtpOrder.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        cbxTable_1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setText("Asztal:");
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel11.setText("Tetel:");
+
+        cbxProduct_1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        tblOrder.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tblOrder.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "rendelesID", "Tétel", "Mennyiség", "Egységár"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(tblOrder);
+        if (tblOrder.getColumnModel().getColumnCount() > 0) {
+            tblOrder.getColumnModel().getColumn(0).setMinWidth(0);
+            tblOrder.getColumnModel().getColumn(0).setMaxWidth(0);
+            tblOrder.getColumnModel().getColumn(1).setPreferredWidth(400);
+        }
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel12.setText("Mennyiség:");
+
+        txtPiece.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        btnAdd_3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnAdd_3.setText("Hozzáad");
+
+        btnMod_3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnMod_3.setText("Módosít");
+
+        btnDel_3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnDel_3.setText("Töröl");
+
+        btnBill_1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnBill_1.setText("Számla");
+
+        btnSave_1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnSave_1.setText("Ment");
+
+        javax.swing.GroupLayout jtpOrderLayout = new javax.swing.GroupLayout(jtpOrder);
+        jtpOrder.setLayout(jtpOrderLayout);
+        jtpOrderLayout.setHorizontalGroup(
+            jtpOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jtpOrderLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jtpOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jtpOrderLayout.createSequentialGroup()
+                        .addComponent(btnSave_1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(16, 16, 16)
+                        .addComponent(btnBill_1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jtpOrderLayout.createSequentialGroup()
+                        .addGroup(jtpOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jtpOrderLayout.createSequentialGroup()
+                                .addGroup(jtpOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel7))
+                                .addGap(40, 40, 40)
+                                .addGroup(jtpOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jtpOrderLayout.createSequentialGroup()
+                                        .addComponent(cbxTable_1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(cbxProduct_1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jtpOrderLayout.createSequentialGroup()
+                                .addComponent(jLabel12)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtPiece, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnAdd_3, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnMod_3, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnDel_3, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18))))
+        );
+        jtpOrderLayout.setVerticalGroup(
+            jtpOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jtpOrderLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jtpOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(cbxTable_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jtpOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(cbxProduct_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jtpOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(txtPiece, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdd_3)
+                    .addComponent(btnMod_3)
+                    .addComponent(btnDel_3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jtpOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBill_1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSave_1, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        btn.addTab("Rendelés", jtpOrder);
 
         jtpTable.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jtpTable.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -710,129 +833,6 @@ public class Restaurant extends javax.swing.JFrame {
         );
 
         btn.addTab("Kimutatás", jtpReport);
-
-        jtpOrder.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jtpOrder.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-
-        cbxTable_1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel7.setText("Asztal:");
-
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel11.setText("Tetel:");
-
-        cbxProduct_1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        tblOrder.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tblOrder.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "rendelesID", "Tétel", "Mennyiség", "Egységár"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, true, true, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane3.setViewportView(tblOrder);
-        if (tblOrder.getColumnModel().getColumnCount() > 0) {
-            tblOrder.getColumnModel().getColumn(0).setMinWidth(0);
-            tblOrder.getColumnModel().getColumn(0).setMaxWidth(0);
-            tblOrder.getColumnModel().getColumn(1).setPreferredWidth(400);
-        }
-
-        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel12.setText("Mennyiség:");
-
-        txtPiece.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        btnAdd_3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnAdd_3.setText("Hozzáad");
-
-        btnMod_3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnMod_3.setText("Módosít");
-
-        btnDel_3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnDel_3.setText("Töröl");
-
-        btnBill_1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnBill_1.setText("Számla");
-
-        btnSave_1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnSave_1.setText("Ment");
-
-        javax.swing.GroupLayout jtpOrderLayout = new javax.swing.GroupLayout(jtpOrder);
-        jtpOrder.setLayout(jtpOrderLayout);
-        jtpOrderLayout.setHorizontalGroup(
-            jtpOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jtpOrderLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jtpOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jtpOrderLayout.createSequentialGroup()
-                        .addComponent(btnSave_1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(16, 16, 16)
-                        .addComponent(btnBill_1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jtpOrderLayout.createSequentialGroup()
-                        .addGroup(jtpOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jtpOrderLayout.createSequentialGroup()
-                                .addGroup(jtpOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel11)
-                                    .addComponent(jLabel7))
-                                .addGap(40, 40, 40)
-                                .addGroup(jtpOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jtpOrderLayout.createSequentialGroup()
-                                        .addComponent(cbxTable_1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(cbxProduct_1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jtpOrderLayout.createSequentialGroup()
-                                .addComponent(jLabel12)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtPiece, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnAdd_3, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnMod_3, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnDel_3, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18))))
-        );
-        jtpOrderLayout.setVerticalGroup(
-            jtpOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jtpOrderLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jtpOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(cbxTable_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jtpOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(cbxProduct_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jtpOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(txtPiece, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAdd_3)
-                    .addComponent(btnMod_3)
-                    .addComponent(btnDel_3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jtpOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBill_1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSave_1, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-
-        btn.addTab("Rendelés", jtpOrder);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
