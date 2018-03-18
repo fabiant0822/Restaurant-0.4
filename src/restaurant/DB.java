@@ -99,23 +99,58 @@ public class DB {
      * @param tbl
      * @param chr
      * @param hly
+     * @return 
      */
-    public void asztal_hozzaad(int tbl, int chr, String hly) {
+    public int asztal_hozzaad(int tbl, int chr, String hly) {
+        if (tbl==0)
+            return 0;
         String s = "INSERT INTO asztalok (asztal, szek, helyseg) VALUES(?,?,?);";
         try (Connection kapcs = DriverManager.getConnection(dbUrl, user, pass);
                 PreparedStatement parancs = kapcs.prepareStatement(s)) {
-            parancs.setInt(1, tbl);
-            parancs.setInt(2, chr);
+            parancs.setInt(0, tbl);
+            parancs.setInt(1, chr);
             if (!hly.isEmpty())
-                parancs.setString(3,levag(hly.trim(), 20));
+                parancs.setString(2,levag(hly.trim(), 20));
             else
-                parancs.setNull(3,java.sql.Types.VARCHAR);
+                parancs.setNull(2,java.sql.Types.VARCHAR);
+            parancs.executeUpdate();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+            }
+        return 0;
+    }
+    
+    public int asztal_modosit(int tbl, int chr, String hly) {
+        if (tbl==0)
+            return 0;
+        String s = "UPDATE asztalok SET asztal=?, szek=?, helyseg=? "
+                 + "WHERE asztal=?";
+        try (Connection kapcs = DriverManager.getConnection(dbUrl, user, pass);
+                PreparedStatement parancs = kapcs.prepareStatement(s)) {
+            parancs.setInt(0, tbl);
+            parancs.setInt(1, chr);
+            if (!hly.isEmpty())
+                parancs.setString(2,levag(hly.trim(), 20));
+            else
+                parancs.setNull(2,java.sql.Types.VARCHAR);
             parancs.executeUpdate();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
+        return 0;
     }
     
+    public void asztal_torol(int tbl) {
+        String s = "DELETE FROM asztalok WHERE asztal=?;";
+        try (Connection kapcs = DriverManager.getConnection(dbUrl, user, pass);
+                PreparedStatement parancs = kapcs.prepareStatement(s)) {
+            parancs.setInt(1, tbl);
+            parancs.executeUpdate();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }                
+    }
+      
     /**
      * Beolvassa a tetelek tábla rekordjait a név szerinti sorrendben.
      * Az adatokat betölti a táblába.
@@ -145,9 +180,9 @@ public class DB {
     }
     
    
-    public void tetel_hozzaad(String tetel, int egysegar, String egyseg) {
+    public int tetel_hozzaad(String tetel, int egysegar, String egyseg) {
         if (tetel.isEmpty())
-            return;
+            return 0;
         String s = "INSERT INTO tetelek (tetel,egysegar,egyseg) VALUES(?,?,?);";
         try (Connection kapcs = DriverManager.getConnection(dbUrl, user, pass);
             PreparedStatement parancs = kapcs.prepareStatement(s)) {
@@ -158,5 +193,34 @@ public class DB {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
+        return 0;
+    }
+    
+    public int tetel_modosit(String tetel, int egysegar, String egyseg) {
+        if (tetel.isEmpty())
+            return 0;
+        String s = "UPDATE tetelek SET tetel=?, egysegar=?, egyseg=? "
+                 + "WHERE tetelID=?";
+        try (Connection kapcs = DriverManager.getConnection(dbUrl, user, pass);
+                PreparedStatement parancs = kapcs.prepareStatement(s)) {
+            parancs.setString(1, levag(tetel.trim(), 50));
+            parancs.setInt(2, egysegar);
+            parancs.setString(3, levag(egyseg.trim(), 5));
+            return parancs.executeUpdate();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+            return 0;
+        }        
+    }
+    
+    public void tetel_torol(int tetelID) {
+        String s = "DELETE FROM tetelek WHERE tetelID=?;";
+        try (Connection kapcs = DriverManager.getConnection(dbUrl, user, pass);
+                PreparedStatement parancs = kapcs.prepareStatement(s)) {
+            parancs.setInt(1, tetelID);
+            parancs.executeUpdate();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }                
     }
 }

@@ -27,7 +27,8 @@ public class Restaurant extends javax.swing.JFrame {
      */
     private void asztalok_tablabol() {
         int i = tblTable_1.getSelectedRow();
-        txtTable.setText(tblTable_1.getValueAt(i, 1).toString());
+        txtTable.setText(tblTable_1.getValueAt(i, 0).toString());
+        txtChair.setText(tblTable_1.getValueAt(i, 1).toString());
         Object e = tblTable_1.getValueAt(i, 2);
         if (e != null)
             txtPlace.setText(e.toString());
@@ -38,11 +39,12 @@ public class Restaurant extends javax.swing.JFrame {
     private void tetelek_tablabol() {
         int i = tblProduct_1.getSelectedRow();
         txtProduct.setText(tblProduct_1.getValueAt(i, 1).toString());
-        Object e = tblProduct_1.getValueAt(i, 2);
+        txtPrice.setText(tblProduct_1.getValueAt(i, 2).toString());
+        Object e = tblProduct_1.getValueAt(i, 3);
         if (e != null)
-            txtPrice.setText(e.toString());
+            txtUnit.setText(e.toString());
         else 
-            txtPrice.setText("");
+            txtUnit.setText("");
     }
     
      private int get_asztal(String tbl) {
@@ -89,23 +91,26 @@ public class Restaurant extends javax.swing.JFrame {
         tetelek_tablabol();
     }
      
-    private void asztal_kijelol(int tid) {
+    private void asztal_kijelol(int tbl) {
         int sordb = tblTable_1.getRowCount();
         for (int i = 0; i < sordb; i++) {
-            int id = Integer.parseInt(tblTable_1.getValueAt(i, 0).toString());
-            if (id == tid) {
-                tblTable_1.setRowSelectionInterval(i, i);
-                asztalok_tablabol();
-                break;
+            int tb = Integer.parseInt(tblTable_1.getValueAt(i, 0).toString());
+            int cr = Integer.parseInt(tblTable_1.getValueAt(i, 1).toString());
+            if (tb == tbl) {
+                if (cr == tbl) {
+                    tblTable_1.setRowSelectionInterval(i, i);
+                    asztalok_tablabol();
+                    break;
+                }
             }
         }
     }
     
-    private void tetelek_kijelol(int eid) {
+    private void tetelek_kijelol(int ttl) {
         int sordb = tblProduct_1.getRowCount();
         for (int i = 0; i < sordb; i++) {
-            int id = Integer.parseInt(tblProduct_1.getValueAt(i, 0).toString());
-            if (id == eid) {
+            int pid = Integer.parseInt(tblProduct_1.getValueAt(i, 0).toString());
+            if (pid == ttl) {
                 tblProduct_1.setRowSelectionInterval(i, i);
                 tetelek_tablabol();
                 break;
@@ -521,6 +526,11 @@ public class Restaurant extends javax.swing.JFrame {
             }
         });
         tblTable_1.setColumnSelectionAllowed(true);
+        tblTable_1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblTable_1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblTable_1);
         tblTable_1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
@@ -536,11 +546,21 @@ public class Restaurant extends javax.swing.JFrame {
         btnMod_1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnMod_1.setMnemonic('M');
         btnMod_1.setText("Módosít");
+        btnMod_1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMod_1ActionPerformed(evt);
+            }
+        });
 
         btnDel_1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnDel_1.setMnemonic('T');
         btnDel_1.setText("Töröl");
         btnDel_1.setToolTipText("");
+        btnDel_1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDel_1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jtpTableLayout = new javax.swing.GroupLayout(jtpTable);
         jtpTable.setLayout(jtpTableLayout);
@@ -703,6 +723,11 @@ public class Restaurant extends javax.swing.JFrame {
             }
         });
         tblProduct_1.setColumnSelectionAllowed(true);
+        tblProduct_1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblProduct_1MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblProduct_1);
         tblProduct_1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         if (tblProduct_1.getColumnModel().getColumnCount() > 0) {
@@ -737,10 +762,20 @@ public class Restaurant extends javax.swing.JFrame {
         btnMod_2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnMod_2.setText("Módosít");
         btnMod_2.setPreferredSize(new java.awt.Dimension(83, 25));
+        btnMod_2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMod_2ActionPerformed(evt);
+            }
+        });
 
         btn_Del_2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btn_Del_2.setText("Töröl");
         btn_Del_2.setPreferredSize(new java.awt.Dimension(83, 25));
+        btn_Del_2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Del_2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jtpProductLayout = new javax.swing.GroupLayout(jtpProduct);
         jtpProduct.setLayout(jtpProductLayout);
@@ -917,6 +952,48 @@ public class Restaurant extends javax.swing.JFrame {
     private void btnOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderActionPerformed
         btn.setSelectedIndex(0);
     }//GEN-LAST:event_btnOrderActionPerformed
+
+    private void tblTable_1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTable_1MouseClicked
+        asztalok_tablabol();
+    }//GEN-LAST:event_tblTable_1MouseClicked
+
+    private void tblProduct_1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProduct_1MouseClicked
+        tetelek_tablabol();
+    }//GEN-LAST:event_tblProduct_1MouseClicked
+
+    private void btnMod_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMod_1ActionPerformed
+       int i = tblTable_1.getSelectedRow();
+        if (i == -1) return;
+        int tbl = Integer.parseInt(tblTable_1.getValueAt(i, 0).toString());
+        int chr = Integer.parseInt(tblTable_1.getValueAt(i, 1).toString());
+        if (ab.asztal_modosit(tbl, chr, txtPlace.getText())>0) {
+            ab.asztal_be(tblTable_1);
+        asztal_kijelol(tbl);
+        }
+    }//GEN-LAST:event_btnMod_1ActionPerformed
+
+    private void btnDel_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDel_1ActionPerformed
+        int i = tblTable_1.getSelectedRow();
+        if (i == -1) return;
+        ab.asztal_torol(Integer.parseInt(tblTable_1.getValueAt(i, 0).toString()));
+        ab.asztal_be(tblTable_1);
+    }//GEN-LAST:event_btnDel_1ActionPerformed
+
+    private void btnMod_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMod_2ActionPerformed
+        int i = tblProduct_1.getSelectedRow();
+        if (i == -1) return;
+        int prc = Integer.parseInt(tblProduct_1.getValueAt (i, 2).toString());
+        if (ab.tetel_modosit(txtProduct.getText(), prc, txtUnit.getText())>0)
+            ab.tetelek_be(tblProduct_1);
+        tetelek_kijelol(prc);
+    }//GEN-LAST:event_btnMod_2ActionPerformed
+
+    private void btn_Del_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Del_2ActionPerformed
+        int i = tblProduct_1.getSelectedRow();
+        if (i == -1) return;
+        ab.tetel_torol(Integer.parseInt(tblProduct_1.getValueAt(i, 0).toString()));
+        ab.tetelek_be(tblProduct_1);
+    }//GEN-LAST:event_btn_Del_2ActionPerformed
 
     /**
      * @param args the command line arguments
