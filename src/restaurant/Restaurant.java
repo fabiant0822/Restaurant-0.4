@@ -18,8 +18,9 @@ public class Restaurant extends javax.swing.JFrame {
         ImageIcon ikon = new ImageIcon(getClass().getResource("my16.png"));
         setIconImage(ikon.getImage());
         ab = new DB();
-        ab.asztal_be(tblTable_1);
-        ab.tetelek_be(tblProduct_1);
+        ab.asztal_be(tblTable_1, cbxTable_1);
+        ab.tetelek_be(tblProduct_1, cbxProduct_1);
+        ab.rendeles_be(tblOrder);
     }
     
     /**
@@ -46,6 +47,20 @@ public class Restaurant extends javax.swing.JFrame {
         else 
             txtUnit.setText("");
     }
+    
+    private void rendelesek_tablabol() {
+        int i = tblOrder.getSelectedRow();
+        String asztal = tblOrder.getValueAt(i, 1).toString();
+        String tetel = tblOrder.getValueAt(i, 2).toString();
+        cbxTable_1.setSelectedItem(asztal);
+        cbxProduct_1.setSelectedItem(tetel);
+        Object a = tblOrder.getValueAt(i, 3);
+        if (a != null) 
+            txtPiece.setText(a.toString());
+        else
+            txtPiece.setText("");
+    }
+    
     
      private int get_asztal(String tbl) {
         int i = 0;
@@ -91,17 +106,29 @@ public class Restaurant extends javax.swing.JFrame {
         tetelek_tablabol();
     }
      
+    private void rendeles_max_kijelol() {
+        int sordb = tblOrder.getRowCount();
+        int max = 0;
+        int sor = 0;
+        for (int i = 0; i < sordb; i++) {
+            int n = Integer.parseInt(tblOrder.getValueAt(i, 0).toString());
+            if (n > max) {
+                max = n;
+                sor = i;
+            }
+        }
+        tblOrder.setRowSelectionInterval(sor, sor);
+        rendelesek_tablabol();
+    }
+     
     private void asztal_kijelol(int tbl) {
         int sordb = tblTable_1.getRowCount();
         for (int i = 0; i < sordb; i++) {
             int tb = Integer.parseInt(tblTable_1.getValueAt(i, 0).toString());
-            int cr = Integer.parseInt(tblTable_1.getValueAt(i, 1).toString());
             if (tb == tbl) {
-                if (cr == tbl) {
                     tblTable_1.setRowSelectionInterval(i, i);
                     asztalok_tablabol();
                     break;
-                }
             }
         }
     }
@@ -116,6 +143,11 @@ public class Restaurant extends javax.swing.JFrame {
                 break;
             }
         }
+    }
+    
+    private void help() {
+        Help h = new Help(this, true);
+        h.setVisible(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -196,7 +228,8 @@ public class Restaurant extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("FBNT Restaurant");
-        setPreferredSize(new java.awt.Dimension(800, 625));
+        setAlwaysOnTop(true);
+        setPreferredSize(new java.awt.Dimension(800, 640));
         setSize(new java.awt.Dimension(800, 640));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
@@ -346,6 +379,11 @@ public class Restaurant extends javax.swing.JFrame {
         btnHelp.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnHelp.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnHelp.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnHelp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHelpActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 7;
@@ -377,22 +415,28 @@ public class Restaurant extends javax.swing.JFrame {
 
             },
             new String [] {
-                "rendelesID", "Tétel", "Mennyiség", "Egységár"
+                "rendelesID", "Asztal", "Tétel", "Mennyiség", "Egységár"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true, true
+                false, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        tblOrder.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblOrderMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tblOrder);
         if (tblOrder.getColumnModel().getColumnCount() > 0) {
             tblOrder.getColumnModel().getColumn(0).setMinWidth(0);
             tblOrder.getColumnModel().getColumn(0).setMaxWidth(0);
-            tblOrder.getColumnModel().getColumn(1).setPreferredWidth(400);
+            tblOrder.getColumnModel().getColumn(1).setPreferredWidth(40);
+            tblOrder.getColumnModel().getColumn(2).setPreferredWidth(400);
         }
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -402,6 +446,11 @@ public class Restaurant extends javax.swing.JFrame {
 
         btnAdd_3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnAdd_3.setText("Hozzáad");
+        btnAdd_3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdd_3ActionPerformed(evt);
+            }
+        });
 
         btnMod_3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnMod_3.setText("Módosít");
@@ -464,12 +513,13 @@ public class Restaurant extends javax.swing.JFrame {
                     .addComponent(jLabel11)
                     .addComponent(cbxProduct_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jtpOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(txtPiece, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jtpOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAdd_3)
-                    .addComponent(btnMod_3)
-                    .addComponent(btnDel_3))
+                    .addGroup(jtpOrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel12)
+                        .addComponent(txtPiece, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnMod_3)
+                        .addComponent(btnDel_3)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -923,7 +973,7 @@ public class Restaurant extends javax.swing.JFrame {
 
     private void btnAdd_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd_1ActionPerformed
         ab.asztal_hozzaad(Integer.parseInt(txtTable.getText()), Integer.parseInt(txtChair.getText()),txtPlace.getText());
-        ab.asztal_be(tblTable_1);
+        ab.asztal_be(tblTable_1, cbxTable_1);
             asztal_max_kijelol();
             txtTable.requestFocus();
             txtTable.selectAll();
@@ -935,7 +985,7 @@ public class Restaurant extends javax.swing.JFrame {
 
     private void btnAdd_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd_2ActionPerformed
         ab.tetel_hozzaad(txtProduct.getText(), Integer.parseInt(txtPrice.getText()), txtUnit.getText());
-        ab.tetelek_be(tblProduct_1);
+        ab.tetelek_be(tblProduct_1, cbxProduct_1);
             tetelek_max_kijelol();    
             txtProduct.requestFocus();
             txtProduct.selectAll();
@@ -967,7 +1017,7 @@ public class Restaurant extends javax.swing.JFrame {
         int tbl = Integer.parseInt(tblTable_1.getValueAt(i, 0).toString());
         int chr = Integer.parseInt(tblTable_1.getValueAt(i, 1).toString());
         if (ab.asztal_modosit(tbl, chr, txtPlace.getText())>0) {
-            ab.asztal_be(tblTable_1);
+            ab.asztal_be(tblTable_1, cbxTable_1);
         asztal_kijelol(tbl);
         }
     }//GEN-LAST:event_btnMod_1ActionPerformed
@@ -976,7 +1026,7 @@ public class Restaurant extends javax.swing.JFrame {
         int i = tblTable_1.getSelectedRow();
         if (i == -1) return;
         ab.asztal_torol(Integer.parseInt(tblTable_1.getValueAt(i, 0).toString()));
-        ab.asztal_be(tblTable_1);
+        ab.asztal_be(tblTable_1, cbxTable_1);
     }//GEN-LAST:event_btnDel_1ActionPerformed
 
     private void btnMod_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMod_2ActionPerformed
@@ -984,7 +1034,7 @@ public class Restaurant extends javax.swing.JFrame {
         if (i == -1) return;
         int prc = Integer.parseInt(tblProduct_1.getValueAt (i, 2).toString());
         if (ab.tetel_modosit(txtProduct.getText(), prc, txtUnit.getText())>0)
-            ab.tetelek_be(tblProduct_1);
+            ab.tetelek_be(tblProduct_1, cbxProduct_1);
         tetelek_kijelol(prc);
     }//GEN-LAST:event_btnMod_2ActionPerformed
 
@@ -992,8 +1042,29 @@ public class Restaurant extends javax.swing.JFrame {
         int i = tblProduct_1.getSelectedRow();
         if (i == -1) return;
         ab.tetel_torol(Integer.parseInt(tblProduct_1.getValueAt(i, 0).toString()));
-        ab.tetelek_be(tblProduct_1);
+        ab.tetelek_be(tblProduct_1, cbxProduct_1);
     }//GEN-LAST:event_btn_Del_2ActionPerformed
+
+    private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
+        help();
+    }//GEN-LAST:event_btnHelpActionPerformed
+
+    private void tblOrderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblOrderMouseClicked
+        rendelesek_tablabol();
+    }//GEN-LAST:event_tblOrderMouseClicked
+
+    private void btnAdd_3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd_3ActionPerformed
+        String tbl = cbxTable_1.getSelectedItem().toString();
+        String ttl = cbxProduct_1.getSelectedItem().toString();
+        int t = get_asztal(tbl);
+        int p = get_tetelID(ttl);
+        int n = ab.rendeles_hozzaad(t, p, txtPiece.getText());
+        if (n > 0) {
+            ab.rendeles_be(tblOrder);
+            rendeles_max_kijelol();
+            txtPiece.requestFocus();
+        }
+    }//GEN-LAST:event_btnAdd_3ActionPerformed
 
     /**
      * @param args the command line arguments

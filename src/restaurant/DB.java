@@ -47,7 +47,7 @@ public class DB {
      * Az adatokat betölti a táblába.
      * @param tbl betölti ebbe a táblába a terméket
      */
-    public void asztal_be(JTable tbl) {
+    public void asztal_be(JTable tbl, JComboBox cb) {
         final DefaultTableModel tm = (DefaultTableModel)tbl.getModel();
         String s = "SELECT * FROM asztalok ORDER BY asztal;";
 
@@ -55,6 +55,7 @@ public class DB {
                 PreparedStatement parancs = kapcs.prepareStatement(s);
                 ResultSet eredmeny = parancs.executeQuery()) {
             tm.setRowCount(0);
+            cb.removeAllItems();
             while (eredmeny.next()) {
                 Object sor[] = {
                     eredmeny.getInt("asztal"),
@@ -62,6 +63,7 @@ public class DB {
                     eredmeny.getString("helyseg")
                 };
                 tm.addRow(sor);
+                cb.addItem(eredmeny.getInt("asztal"));
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -155,8 +157,9 @@ public class DB {
      * Beolvassa a tetelek tábla rekordjait a név szerinti sorrendben.
      * Az adatokat betölti a táblába.
      * @param tbl betölti ebbe a táblába a terméket
+     * @param cb
      */
-    public void tetelek_be(JTable tbl) {
+    public void tetelek_be(JTable tbl, JComboBox cb) {
         final DefaultTableModel tm = (DefaultTableModel)tbl.getModel();
         String s = "SELECT * FROM tetelek ORDER BY tetel;";
 
@@ -164,6 +167,7 @@ public class DB {
              PreparedStatement parancs = kapcs.prepareStatement(s);
              ResultSet eredmeny = parancs.executeQuery()) {
             tm.setRowCount(0);
+            cb.removeAllItems();
             while (eredmeny.next()) {
                 Object sor[] = {
                     eredmeny.getInt("tetelID"),
@@ -172,6 +176,7 @@ public class DB {
                     eredmeny.getString("egyseg")
                 };
                 tm.addRow(sor);
+                cb.addItem(eredmeny.getString("tetel"));
             }            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -222,5 +227,55 @@ public class DB {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }                
+    }
+    
+    public void rendeles_be(JTable tbl) {
+        final DefaultTableModel tm = (DefaultTableModel)tbl.getModel();
+        String s = "SELECT rendelesID, "
+                 + "asztalok.asztal AS tbl, "
+                 + "tetelek.tetel AS prd, "
+                 + "mennyiseg "
+                 + "osszeg "
+                 + "FROM rendelesek "
+                 + "JOIN asztalok ON rendelesek.asztal=asztalok.asztal "
+                 + "JOIN tetelek ON rendelesek.tetelID=tetelek.tetelID;";
+
+        try (Connection kapcs = DriverManager.getConnection(dbUrl,user,pass);
+             PreparedStatement parancs = kapcs.prepareStatement(s);
+             ResultSet eredmeny = parancs.executeQuery()) {
+            tm.setRowCount(0);
+            while (eredmeny.next()) {
+                Object sor[] = {
+                    eredmeny.getInt("rendelesID"),
+                    eredmeny.getInt("tbl"),
+                    eredmeny.getString("prd"),
+                    //eredmeny.getInt("mennyiseg"),
+                    eredmeny.getInt("osszeg")
+                };
+                tm.addRow(sor);
+            }            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+            System.exit(3);
+        }
+    }
+    
+    public int rendeles_hozzaad(int asztal, String tetel, int mennyiseg, int osszeg) {
+        String s = "INSERT INTO leltar (teremid,eszkozid,egyeb) VALUES(?,?,?);";
+        try (Connection kapcs = DriverManager.getConnection(dbUrl, user, pass);
+                PreparedStatement parancs = kapcs.prepareStatement(s)) {
+            parancs.setInt(1, asztal);
+            parancs.setString(2, tetel);
+            parancs.setInt(3, mennyiseg);
+            parancs.setInt(4, osszeg);
+            return parancs.executeUpdate();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+            return 0;
+        }
+    }
+
+    int rendeles_hozzaad(int t, int p, String text) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
