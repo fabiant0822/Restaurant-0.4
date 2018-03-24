@@ -11,6 +11,7 @@ import java.util.Properties;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 public class DB {
@@ -46,6 +47,7 @@ public class DB {
      * Beolvassa az asztalok tábla rekordjait, asztalszám szerinti sorrendben.
      * Az adatokat betölti a táblába.
      * @param tbl betölti ebbe a táblába a terméket
+     * @param cb
      */
     public void asztal_be(JTable tbl, JComboBox cb) {
         final DefaultTableModel tm = (DefaultTableModel)tbl.getModel();
@@ -158,8 +160,9 @@ public class DB {
      * Az adatokat betölti a táblába.
      * @param tbl betölti ebbe a táblába a terméket
      * @param cb
+     * @param tf
      */
-    public void tetelek_be(JTable tbl, JComboBox cb) {
+    public void tetelek_be(JTable tbl, JComboBox cb, JTextField tf) {
         final DefaultTableModel tm = (DefaultTableModel)tbl.getModel();
         String s = "SELECT * FROM tetelek ORDER BY tetel;";
 
@@ -177,6 +180,7 @@ public class DB {
                 };
                 tm.addRow(sor);
                 cb.addItem(eredmeny.getString("tetel"));
+                tf.setText(eredmeny.getString("egysegar"));
             }            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -261,7 +265,7 @@ public class DB {
     }
     
     public int rendeles_hozzaad(int asztal, String tetel, int mennyiseg, int osszeg) {
-        String s = "INSERT INTO leltar (teremid,eszkozid,egyeb) VALUES(?,?,?);";
+        String s = "INSERT INTO rendelesek (asztal,tetel,mennyiseg,osszeg) VALUES(?,?,?,?);";
         try (Connection kapcs = DriverManager.getConnection(dbUrl, user, pass);
                 PreparedStatement parancs = kapcs.prepareStatement(s)) {
             parancs.setInt(1, asztal);
@@ -276,6 +280,7 @@ public class DB {
     }
 
     int rendeles_hozzaad(int t, int p, String text) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
+    
 }
