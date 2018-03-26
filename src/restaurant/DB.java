@@ -11,7 +11,6 @@ import java.util.Properties;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 public class DB {
@@ -160,9 +159,8 @@ public class DB {
      * Az adatokat betölti a táblába.
      * @param tbl betölti ebbe a táblába a terméket
      * @param cb
-     * @param tf
      */
-    public void tetelek_be(JTable tbl, JComboBox cb, JTextField tf) {
+    public void tetelek_be(JTable tbl, JComboBox cb) {
         final DefaultTableModel tm = (DefaultTableModel)tbl.getModel();
         String s = "SELECT * FROM tetelek ORDER BY tetel;";
 
@@ -180,7 +178,6 @@ public class DB {
                 };
                 tm.addRow(sor);
                 cb.addItem(eredmeny.getString("tetel"));
-                tf.setText(eredmeny.getString("egysegar"));
             }            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -238,8 +235,8 @@ public class DB {
         String s = "SELECT rendelesID, "
                  + "asztalok.asztal AS tbl, "
                  + "tetelek.tetel AS prd, "
-                 + "mennyiseg "
-                 + "osszeg "
+                 + "mennyiseg, "
+                 + "mennyiseg * tetelek.egysegar AS osszeg "
                  + "FROM rendelesek "
                  + "JOIN asztalok ON rendelesek.asztal=asztalok.asztal "
                  + "JOIN tetelek ON rendelesek.tetelID=tetelek.tetelID;";
@@ -253,7 +250,7 @@ public class DB {
                     eredmeny.getInt("rendelesID"),
                     eredmeny.getInt("tbl"),
                     eredmeny.getString("prd"),
-                    //eredmeny.getInt("mennyiseg"),
+                    eredmeny.getInt("mennyiseg"),
                     eredmeny.getInt("osszeg")
                 };
                 tm.addRow(sor);
@@ -264,14 +261,13 @@ public class DB {
         }
     }
     
-    public int rendeles_hozzaad(int asztal, String tetel, int mennyiseg, int osszeg) {
-        String s = "INSERT INTO rendelesek (asztal,tetel,mennyiseg,osszeg) VALUES(?,?,?,?);";
+    public int rendeles_hozzaad(int asztal, int tetel, int mennyiseg) {
+        String s = "INSERT INTO rendelesek (asztal,tetelID,mennyiseg) VALUES(?,?,?);";
         try (Connection kapcs = DriverManager.getConnection(dbUrl, user, pass);
                 PreparedStatement parancs = kapcs.prepareStatement(s)) {
             parancs.setInt(1, asztal);
-            parancs.setString(2, tetel);
+            parancs.setInt(2, tetel);
             parancs.setInt(3, mennyiseg);
-            parancs.setInt(4, osszeg);
             return parancs.executeUpdate();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -279,8 +275,38 @@ public class DB {
         }
     }
 
-    int rendeles_hozzaad(int t, int p, String text) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    /**
+     *
+     * @param rendelesID
+     * @param asztal
+     * @param tetel
+     * @param mennyiseg
+     * @return
+     */
+    public int rendeles_modosit(int rendelesID, int asztal, int tetel, int mennyiseg) {
+        String s = "UPDATE rendelesek SET asztal=?, tetelID=?, mennyiseg=? "
+                 + "WHERE rendelesID=?";
+        try (Connection kapcs = DriverManager.getConnection(dbUrl, user, pass);
+                PreparedStatement parancs = kapcs.prepareStatement(s)) {
+            parancs.setInt(1, asztal);
+            parancs.setInt(2, tetel);
+            parancs.setInt(3, mennyiseg);
+            parancs.setInt(4, rendelesID);
+            return parancs.executeUpdate();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+            return 0;
+        }        
     }
     
+    public void rendeles_torol(int rendelesID) {
+        String s = "DELETE FROM rendelesek WHERE rendelesID=?;";
+        try (Connection kapcs = DriverManager.getConnection(dbUrl, user, pass);
+                PreparedStatement parancs = kapcs.prepareStatement(s)) {
+            parancs.setInt(1, rendelesID);
+            parancs.executeUpdate();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }                
+    }
 }
