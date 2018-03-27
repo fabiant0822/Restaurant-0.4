@@ -149,10 +149,10 @@ public class Restaurant extends javax.swing.JFrame {
         txtSzum.setText(String.format("%,d Ft", szum));
     }
     
-    private void help() {
-        Help h = new Help(this, true);
-        h.setVisible(true);
-    }
+//    private void help() {
+//        Help h = new Help(this, true);
+//        h.setVisible(true);
+//    }
     
     private int egysegar(String nev) {
         int db = tblProduct_1.getRowCount();
@@ -1107,7 +1107,7 @@ public class Restaurant extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_Del_2ActionPerformed
 
     private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
-        help();
+        //help();
     }//GEN-LAST:event_btnHelpActionPerformed
 
     private void tblOrderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblOrderMouseClicked
