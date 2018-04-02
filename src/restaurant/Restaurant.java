@@ -1,6 +1,13 @@
 package restaurant;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Scanner;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -9,7 +16,7 @@ import javax.swing.ImageIcon;
 public class Restaurant extends javax.swing.JFrame {
     
     DB ab;
-
+    
     /**
      * Creates new form Restaurant
      */
@@ -149,10 +156,10 @@ public class Restaurant extends javax.swing.JFrame {
         txtSzum.setText(String.format("%,d Ft", szum));
     }
     
-//    private void help() {
-//        Help h = new Help(this, true);
-//        h.setVisible(true);
-//    }
+    private void help() {
+        Help h = new Help(this, true);
+        h.setVisible(true);
+    }
     
     private int egysegar(String nev) {
         int db = tblProduct_1.getRowCount();
@@ -163,12 +170,50 @@ public class Restaurant extends javax.swing.JFrame {
         }
         return -1;
     }
+    
+    private void bill() {
+        Bill b = new Bill(this, true);
+        b.setVisible(true);
+    }
+    
+   private void mentes() {
+        if (fcSave.showSaveDialog(this)==JFileChooser.APPROVE_OPTION) {
+            try (PrintWriter ki = new PrintWriter(fcSave.getSelectedFile(),"utf8")) {
+                int sordb = tblOrder.getRowCount();
+                for (int i = 0; i < sordb; i++) {
+                    ki.printf("%-4s | %-50s | %-10s | %-10s\n\n", 
+                            tblOrder.getValueAt(i, 1).toString(),
+                            tblOrder.getValueAt(i, 2),
+                            tblOrder.getValueAt(i, 3).toString(),
+                            tblOrder.getValueAt(i, 4).toString());
+                }
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, "Nem tudtam menteni!",
+                        "Hiba!", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+   
+//   private void megnyitas() {
+//       if (fcOpen.showOpenDialog(this)==JFileChooser.APPROVE_OPTION) {
+//            try (Scanner be = new Scanner(fcOpen.getSelectedFile(),"utf8")) {
+//                while (be.hasNextLine()) {
+//                    tblOrder.addElement(be.nextLine());
+//                }
+//           } catch (IOException ex) {
+//                JOptionPane.showMessageDialog(this, "Nem tudtam betölteni!",
+//                        "Hiba!", JOptionPane.ERROR_MESSAGE); 
+//            }     
+//        }
+//   }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        fcOpen = new javax.swing.JFileChooser();
+        fcSave = new javax.swing.JFileChooser();
         btnOrder = new javax.swing.JButton();
         btnTable = new javax.swing.JButton();
         btnProfile = new javax.swing.JButton();
@@ -243,6 +288,21 @@ public class Restaurant extends javax.swing.JFrame {
         jmbClose = new javax.swing.JMenuItem();
         jmOption = new javax.swing.JMenu();
         jmHelp = new javax.swing.JMenu();
+
+        fcOpen.setApproveButtonMnemonic(77);
+        fcOpen.setApproveButtonText("Megnyitás");
+        fcOpen.setApproveButtonToolTipText("");
+        fcOpen.setCurrentDirectory(new File("."));
+        fcOpen.setDialogTitle("Megnyitás");
+        fcOpen.setFileFilter(new FileNameExtensionFilter("Szöveges fájlok","txt"));
+
+        fcSave.setApproveButtonMnemonic(77);
+        fcSave.setDialogType(javax.swing.JFileChooser.SAVE_DIALOG);
+        fcSave.setApproveButtonText("Mentés");
+        fcSave.setApproveButtonToolTipText("");
+        fcSave.setCurrentDirectory(new File("."));
+        fcSave.setDialogTitle("Mentés");
+        fcSave.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("FBNT Restaurant");
@@ -493,9 +553,19 @@ public class Restaurant extends javax.swing.JFrame {
 
         btnBill_1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnBill_1.setText("Számla");
+        btnBill_1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBill_1ActionPerformed(evt);
+            }
+        });
 
         btnSave_1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnSave_1.setText("Ment");
+        btnSave_1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSave_1ActionPerformed(evt);
+            }
+        });
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel13.setText("Végösszeg:");
@@ -636,14 +706,13 @@ public class Restaurant extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblTable_1.setColumnSelectionAllowed(true);
+        tblTable_1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblTable_1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblTable_1MouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tblTable_1);
-        tblTable_1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         btnAdd_1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnAdd_1.setMnemonic('H');
@@ -833,14 +902,13 @@ public class Restaurant extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblProduct_1.setColumnSelectionAllowed(true);
+        tblProduct_1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblProduct_1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblProduct_1MouseClicked(evt);
             }
         });
         jScrollPane2.setViewportView(tblProduct_1);
-        tblProduct_1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         if (tblProduct_1.getColumnModel().getColumnCount() > 0) {
             tblProduct_1.getColumnModel().getColumn(0).setMinWidth(0);
             tblProduct_1.getColumnModel().getColumn(0).setMaxWidth(0);
@@ -999,7 +1067,12 @@ public class Restaurant extends javax.swing.JFrame {
         jmFile.setText("File");
 
         jmbOpen.setMnemonic('N');
-        jmbOpen.setText("Nyitás");
+        jmbOpen.setText("Megnyitás");
+        jmbOpen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmbOpenActionPerformed(evt);
+            }
+        });
         jmFile.add(jmbOpen);
         jmFile.add(jSeparator1);
 
@@ -1013,7 +1086,8 @@ public class Restaurant extends javax.swing.JFrame {
         jmFile.add(jSeparator2);
 
         jmbClose.setMnemonic('Z');
-        jmbClose.setText("Zárás");
+        jmbClose.setText("Bezárás");
+        jmbClose.setToolTipText("");
         jmFile.add(jmbClose);
 
         jMenuBar1.add(jmFile);
@@ -1107,7 +1181,7 @@ public class Restaurant extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_Del_2ActionPerformed
 
     private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
-        //help();
+        help();
     }//GEN-LAST:event_btnHelpActionPerformed
 
     private void tblOrderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblOrderMouseClicked
@@ -1159,6 +1233,18 @@ public class Restaurant extends javax.swing.JFrame {
             szumma();
     }//GEN-LAST:event_btnDel_3ActionPerformed
 
+    private void btnSave_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSave_1ActionPerformed
+        mentes();
+    }//GEN-LAST:event_btnSave_1ActionPerformed
+
+    private void jmbOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmbOpenActionPerformed
+//        megnyitas();
+    }//GEN-LAST:event_jmbOpenActionPerformed
+
+    private void btnBill_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBill_1ActionPerformed
+        bill();
+    }//GEN-LAST:event_btnBill_1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1194,6 +1280,8 @@ public class Restaurant extends javax.swing.JFrame {
     private javax.swing.JButton btn_Del_2;
     private javax.swing.JComboBox<String> cbxProduct_3;
     private javax.swing.JComboBox<String> cbxTable_3;
+    private javax.swing.JFileChooser fcOpen;
+    private javax.swing.JFileChooser fcSave;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -1247,4 +1335,5 @@ public class Restaurant extends javax.swing.JFrame {
     private javax.swing.JTextField txtTable;
     private javax.swing.JTextField txtUnit;
     // End of variables declaration//GEN-END:variables
+
 }

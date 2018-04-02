@@ -1,0 +1,8 @@
+Asztal: 1    Tétel: Cézár saláta                                       Mennyiség: 1          Ár: 1400       Ft
+
+Asztal: 5    Tétel: Konfitált kacsamell zsírjában                      Mennyiség: 2          Ár: 2400       Ft
+
+Asztal: 1    Tétel: Fokhagymás céklasteak bacon jam-mel                Mennyiség: 5          Ár: 6000       Ft
+
+Asztal: 5    Tétel: Fokhagymás céklasteak bacon jam-mel                Mennyiség: 2          Ár: 2400       Ft
+

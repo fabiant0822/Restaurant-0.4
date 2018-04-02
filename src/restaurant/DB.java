@@ -162,7 +162,7 @@ public class DB {
      */
     public void tetelek_be(JTable tbl, JComboBox cb) {
         final DefaultTableModel tm = (DefaultTableModel)tbl.getModel();
-        String s = "SELECT * FROM tetelek ORDER BY tetel;";
+        String s = "SELECT * FROM tetelek ORDER BY tetel ASC;";
 
         try (Connection kapcs = DriverManager.getConnection(dbUrl,user,pass);
              PreparedStatement parancs = kapcs.prepareStatement(s);
