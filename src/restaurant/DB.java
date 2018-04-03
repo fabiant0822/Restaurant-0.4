@@ -309,4 +309,54 @@ public class DB {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }                
     }
+    
+    public void szamla_be(JTable tbl) {
+        final DefaultTableModel tm = (DefaultTableModel)tbl.getModel();
+        String s = "SELECT szamlaID, "
+                 + "rendelesek.rendelesID AS rnd, "
+                 + "tetelek.tetel AS ttl, "
+                 + "rendelesek.mennyiseg AS mny, "
+                 + "mennyiseg * tetelek.egysegar AS osszeg "
+                 + "vegosszeg "
+                 + "FROM szamla "
+                 + "JOIN asztalok ON rendelesek.asztal=asztalok.asztal "
+                 + "JOIN tetelek ON rendelesek.tetelID=tetelek.tetelID "
+                 + "Join rendelesek ON rendelesek.rendelesID=szamla.szamlaID;";
+
+        try (Connection kapcs = DriverManager.getConnection(dbUrl,user,pass);
+             PreparedStatement parancs = kapcs.prepareStatement(s);
+             ResultSet eredmeny = parancs.executeQuery()) {
+            tm.setRowCount(0);
+            while (eredmeny.next()) {
+                Object sor[] = {
+                    eredmeny.getInt("szamlaID"),
+                    eredmeny.getInt("rnd"),
+                    eredmeny.getString("ttl"),
+                    eredmeny.getInt("mny"),
+                    eredmeny.getInt("osszeg"),
+                    eredmeny.getInt("vegosszeg")    
+                };
+                tm.addRow(sor);
+            }            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+            System.exit(3);
+        }
+    }
+    
+    
+    public int szamla_hozzaad(int asztalID, int tetelID, int mennyiseg, int vegosszeg) {
+        String s = "INSERT INTO szamla (asztalID,tetelID,mennyiseg,vegosszeg) VALUES(?,?,?,?);";
+        try (Connection kapcs = DriverManager.getConnection(dbUrl, user, pass);
+                PreparedStatement parancs = kapcs.prepareStatement(s)) {
+            parancs.setInt(1, asztalID);
+            parancs.setInt(2, tetelID);
+            parancs.setInt(3, mennyiseg);
+            parancs.setInt(4, vegosszeg);
+            return parancs.executeUpdate();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+            return 0;
+        }
+    }
 }

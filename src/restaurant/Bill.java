@@ -7,6 +7,8 @@ import java.time.LocalDateTime;
  * @author FABIANT-PC
  */
 public class Bill extends javax.swing.JDialog {
+    
+    Restaurant rt;
 
     /**
      * Creates new form Bill
